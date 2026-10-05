@@ -1,6 +1,6 @@
 {
  "titulo": "DK-11 — Cyberdeck VAIO Duo 11",
- "resumo": "Cyberdeck em alumínio usinado com a placa-mãe de um Sony VAIO Duo 11 e tela OLED de 13,3\".",
+ "resumo": "Cyberdeck em alumínio usinado com a placa-mãe de um Sony VAIO Duo 11, tela OLED de 13,3\" e segunda tela em barra de 8,8\" no deck.",
  "specs": [
   [
    "Dimensões fechado",
@@ -8,7 +8,7 @@
   ],
   [
    "Peso estimado",
-   "base 2.22 kg + tampa 1.42 kg"
+   "base 2.33 kg + tampa 1.42 kg"
   ],
   [
    "Processador",
@@ -21,6 +21,10 @@
   [
    "Tela",
    "OLED 13,3\" genérico (A DEFINIR)"
+  ],
+  [
+   "2ª tela",
+   "LCD barra 8,8\" HSD088IPW1 1920x480 IPS + placa HDMI — no deck, atrás do teclado"
   ],
   [
    "Bateria",
@@ -40,7 +44,7 @@
   ],
   [
    "Parafusos",
-   "48 × DIN 912 sextavado interno"
+   "52 × DIN 912 sextavado interno"
   ]
  ],
  "lista_materiais": [
@@ -55,6 +59,12 @@
    "item": "Dobradiça torque constante Southco E6-10-208-50",
    "material": "Alumínio, pintura preta",
    "qtd": 2
+  },
+  {
+   "categoria": "Comprar",
+   "item": "LCD barra 8,8\" HSD088IPW1 1920x480 IPS + placa HDMI",
+   "material": "",
+   "qtd": 1
   },
   {
    "categoria": "Comprar",
@@ -75,10 +85,16 @@
    "qtd": 1
   },
   {
+   "categoria": "Comprar",
+   "item": "Placa driver HDMI da barra 8,8\" (vem no kit)",
+   "material": "",
+   "qtd": 1
+  },
+  {
    "categoria": "Parafusos",
    "item": "DIN 912 M2 x 5",
    "material": "Aço 12.9 oxidado preto (ou inox A2 enegrecido)",
-   "qtd": 5
+   "qtd": 9
   },
   {
    "categoria": "Parafusos",
@@ -196,6 +212,12 @@
   },
   {
    "categoria": "Usinar",
+   "item": "Chapa de suporte da barra",
+   "material": "Chapa Al 5052 1 mm (corte a laser)",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
    "item": "Deck (tampo da base)",
    "material": "Al 6061-T6, Cerakote H-236 O.D. Green (fosco)",
    "qtd": 1
@@ -292,9 +314,9 @@
   "relatorio": [
    "======================================================================",
    "CYBERDECK VAIO DUO 11 — verificação",
-   "peças: 94 (48 parafusos)",
+   "peças: 102 (52 parafusos)",
    "  Bandeja             857 g   bloco bruto 340 x 240 x 25",
-   "  Deck                483 g   bloco bruto 340 x 240 x 9",
+   "  Deck                424 g   bloco bruto 340 x 240 x 10",
    "  Casco_Tampa         845 g   bloco bruto 340 x 240 x 22",
    "  Moldura_Tela        292 g   bloco bruto 340 x 240 x 7",
    "  Protetor_Base_Esq     35 g   bloco bruto 46 x 46 x 32",
@@ -305,7 +327,8 @@
    "  Botao_Chave           1 g   bloco bruto 14 x 14 x 10",
    "  Janela_RF_1           2 g   bloco bruto 54 x 14 x 5",
    "  Janela_RF_2           2 g   bloco bruto 54 x 14 x 5",
-   "massa base ≈ 2.22 kg (com eletrônica estimada), tampa ≈ 1.42 kg",
+   "  Suporte_Barra        25 g   bloco bruto 251 x 54 x 3",
+   "massa base ≈ 2.33 kg (com eletrônica estimada), tampa ≈ 1.42 kg",
    "estabilidade: não tomba até 150°",
    "CG da tampa a 101.5 mm do eixo; torque gravitacional: 1.09 N·m (80–135°), 1.28 N·m pico ≥60°",
    "dobradiças: E6-10-208-50 + E6-10-208-50 = 1.8 N·m (alvo 1,25 × 1.09 = 1.36)",
@@ -380,7 +403,15 @@
   },
   {
    "p": "Qual teclado?",
-   "r": "O teclado original do Duo 11, com o trackpoint óptico, encaixado num nicho do deck 1 mm abaixo da superfície."
+   "r": "O teclado original do Duo 11, com o trackpoint óptico, encaixado num nicho do deck 1 mm abaixo da superfície, na frente da base (no lugar do apoio de mãos)."
+  },
+  {
+   "p": "Que tela é a do deck?",
+   "r": "Uma barra LCD IPS de 8,8\" (HannStar HSD088IPW1, 1920×480) com placa driver HDMI, atrás do teclado. Fica num bolsão por baixo do deck com aba de 1,5 mm por cima (a tampa fecha sem encostar), presa por uma chapa de alumínio de 1 mm com 4 parafusos M2. Recebe o HDMI do Duo 11 por cabo flat interno e 5 V pela USB da placa."
+  },
+  {
+   "p": "A chave do lado liga o computador?",
+   "r": "Não. Quem liga e desliga é o botão de cima (vai no conector de power da placa-mãe). A chave deslizante é só de sinal (SS-12D00, 0,5 A) e serve para uma função extra, como desligar a tela de 8,8\" por um MOSFET; não pode cortar a bateria."
   },
   {
    "p": "Dá para fazer numa CNC comum?",
@@ -395,5 +426,5 @@
    "r": "Por dois furos de Ø8 nas traseiras da base e da tampa, a 11 mm do eixo da dobradiça — perto do eixo o laço quase não muda de comprimento quando a tela abre. O trecho exposto vai numa capa trançada."
   }
  ],
- "readme": "# Cyberdeck — placa do Sony VAIO Duo 11 (SVD11)\n\nCarcaça tipo notebook (abre como laptop), toda em alumínio usinado, para reaproveitar a placa-mãe\ndo Duo 11 com uma tela OLED nova.\n\n## Arquivos\n\n| Arquivo | O que é |\n|---|---|\n| `CyberdeckVaioDuo11.FCMacro` | roda no FreeCAD: monta tudo, salva o `.FCStd`, exporta e gera as vistas |\n| `parametros.py` | **todas as medidas**. Os valores marcados `# MEDIR` são provisórios |\n| `cyberdeck.py` | geometria (Part, sem dependências de GUI) |\n| `verificar.py` | checagem técnica: `freecadcmd verificar.py` |\n| `construir.py` | documento FreeCAD, STEP, lista de materiais, vistas |\n| `saida/step/` | STEP de cada peça usinada + montagem (para orçamento CNC) |\n| `saida/lista_materiais.csv` | lista de materiais |\n| `saida/furos_roscados.csv` | tabela de furos roscados (rosca, broca, profundidade, posição) |\n\nPara abrir/fechar a tampa no FreeCAD: selecione `Tampa` → propriedade **Abertura**.\n\n## Construção\n\n- **Base** = `Bandeja` (fundo 2,5 + paredes 5, bloco 340×240×25) + `Deck` (tampo 7 mm com nicho do\n  teclado e alívio por baixo, pele de 2,5). Deck preso por 14× DIN 912 M3×10 **rebaixados** (cabeça\n  faceada: a tampa fecha por cima) em Helicoil M3 2D (abre para manutenção sem gastar a rosca do alumínio).\n- **Tampa** = `Moldura_Tela` (5 mm, prende o OLED pela frente, 13× DIN 912 M2,5×6 rebaixados e à mostra)\n  + `Casco_Tampa` (costas em módulos com placa de vidro + espinha traseira que guarda a placa eDP/driver).\n  Casco e moldura são ocados em volta da tela (quadro oco, pele de 2 mm).\n- **Dobradiças**: 2× **Southco E6-10-208-50** (E6 Medium, torque constante simétrico 0,9 N·m, furo\n  passante Ø4,5), montadas nas faces traseiras com 8× DIN 912 M4×10 em Helicoil M4 1,5D.\n  A medida segue o datasheet (folha 38 × 40, furos 17,8 × 28, eixo a 5 mm da face, `saida/ref_southco_e6_datasheet.png`).\n  Escolha pelo cálculo: tampa ≈ 1,42 kg, CG a 102 mm do eixo → 1,09 N·m no uso (80–135°);\n  2 × 0,9 = 1,8 N·m (1,65×, segura firme em qualquer ângulo).\n- **Janelas RF** (POM-C preto) no topo da espinha: alumínio bloqueia Wi-Fi/Bluetooth; as antenas\n  ficam coladas por baixo dessas janelas.\n- Cabos tela/antenas passam por furos Ø8 nas traseiras, a 11 mm do eixo (o laço quase não muda de\n  comprimento ao abrir); usar capa trançada no trecho exposto.\n- Ventilação: entrada no fundo sob a ventoinha, saída na lateral esquerda.\n\n## Linguagem visual (v2 — \"tático\")\n\nInspirada num conceito de equipamento tático: **corpo de cima verde oliva fosco** (Deck + Casco da tampa,\nCerakote H-236 O.D. Green) sobre **corpo de baixo preto** (Bandeja + Moldura, anodização dura preta),\ncom a divisão horizontal bem marcada.\n\n- **Protetores de canto** pretos em L nos 4 cantos da frente (base e tampa), salientes 1,5 mm, arestas\n  chanfradas e ranhura na altura da junta; cada um preso por 2 DIN 912 aparentes (M3 na base, M2,5 na tampa).\n  O corpo tem o encaixe com o mesmo raio R3, então protetor e corpo fecham sem fresta.\n- **Trilho vazado** na frente da bandeja (barras, chevrons, janela inclinada e janela central, 2,5 de\n  profundidade; parede da bandeja passou para 5 mm). Lateral esquerda: rebaixo angular com as saídas de ar\n  passantes. Conectores ficam num painel rebaixado de 1,5 nas duas laterais.\n- **Topo da tampa em módulos**: duas linhas de divisão + **placa de vidro fumê** encaixada em degrau\n  (acrílico 1,2 mm cortado a laser, colado com VHB) e filete R3 nas arestas de cima.\n- **Chave deslizante** na lateral direita (botão usinado com ranhuras, curso de 3) — prevista para uma\n  micro chave SS-12D00 (sinal) que entra no garfo da haste.\n- **Marcações** gravadas a laser (0,15) — no Cerakote/anodizado a gravação fica clara. No vidro é serigrafia\n  branca. Textos e posições em `MARCACOES` (`parametros.py`).\n\n## Componentes internos (v3)\n\nModelados no grupo **Componentes** de cada parte (Base/Tampa). Do Duo 11 (pela desmontagem iFixit/MyFixGuide):\n\n- **Placa-mãe** SVD11 com CPU (BGA1023), chipset HM76 e RAM soldada; **SSD mSATA** Toshiba THNSNS128GMCP\n  no soquete da placa.\n- **Cooler** original (placa de cobre comum à CPU e ao chipset, heatpipe, radiador) com a **ventoinha** radial;\n  o radiador encosta nas saídas de ar da lateral esquerda, a entrada é pelo fundo.\n- **Placa Wi-Fi/RJ45** (Intel 6235 half mini PCIe + RJ45) — RJ45 sai pela **traseira**.\n- **Placas de conectores**: direita (USB-A x2 + HDMI, o HDMI já vem por cabo flat no Duo 11) e esquerda\n  (DC-in, P2, SD). Se esses conectores forem soldados na placa-mãe, viram extensões (cabo/FPC).\n- **Bateria** VGP-BPS31 (7,4 V, 37 Wh), **alto-falantes** (som sai por grades em colmeia no fundo),\n  **teclado** com trackpoint óptico, **antenas** flex coladas sob as janelas RF.\n\nComprar: OLED + placa eDP, **botão power 12 mm** antivandalismo com LED (rebaixado no deck, a tampa não\naperta quando fecha), **micro chave SS-12D00** atrás do botão deslizante (é de sinal, 0,5 A: serve para\nfunção tipo desligar Wi-Fi/tela; **não** usar para cortar a bateria) e os cabos listados em\n`lista_materiais.csv`.\n\nA verificação confere que nenhum componente bate em outro ou na carcaça (inclusive conectores nos recortes).\n\n## Regras de usinagem respeitadas\n\n- Cantos internos verticais com raio ≥ 3 (fresa Ø6); bolsões de encaixe justo (painel, teclado) com\n  R1 e folga de 0,5 para o canto vivo da peça comprada não bater no raio.\n- Paredes ≥ 3, peles ≥ 1,8; fundo de furo cego com ≥ 0,8 de material (checado).\n- Rebaixos DIN 974-1, furos de folga ISO 273 média, brocas de rosca: M2 1,6 · M2,5 2,05 ·\n  M3 STI 3,2 · M4 STI 4,2.\n- Engajamento ≥ 1,5d em todas as roscas (checado).\n- Recortes de portas, saídas de ar, trilho vazado e furos dos protetores pedem fixação de lado (ou 4º eixo);\n  o trilho usa fresa Ø2 (cantos R1).\n- Acabamento: jato de microesferas antes de tudo; peças pretas com anodização dura, verdes com Cerakote\n  (mascarar furos roscados e faces de encaixe do Cerakote, que soma ~25 µm).\n\n## Verificação (`freecadcmd verificar.py`)\n\nPassou: sem interferências, todas as roscas OK, tampa abre até 150° sem colidir, o conjunto não tomba\npara trás até 150° (pés traseiros a 12 mm da borda).\n\n## O que falta medir (valores provisórios em `parametros.py`)\n\n1. **Placa-mãe**: contorno, furos de fixação, altura dos componentes, posição de cada conector\n   (USB, HDMI, DC-in, áudio, SD) → `PLACA` e `PORTAS`.\n2. **Ventoinha + heatpipe**: posição e saída de ar → `VENTOINHA`.\n3. **Teclado** (original do Duo 11): contorno e espessura → `TECLADO`.\n4. **Bateria** → `BATERIA`.\n5. **OLED**: modelo escolhido → contorno, espessura, área ativa, lado do flat → `PAINEL`;\n   e se a placa sai eDP direto ou se precisa de placa driver (HDMI→eDP) → `DRIVER_TELA`.\n"
+ "readme": "# Cyberdeck — placa do Sony VAIO Duo 11 (SVD11)\n\nCarcaça tipo notebook (abre como laptop), toda em alumínio usinado, para reaproveitar a placa-mãe\ndo Duo 11 com uma tela OLED nova.\n\n## Arquivos\n\n| Arquivo | O que é |\n|---|---|\n| `CyberdeckVaioDuo11.FCMacro` | roda no FreeCAD: monta tudo, salva o `.FCStd`, exporta e gera as vistas |\n| `parametros.py` | **todas as medidas**. Os valores marcados `# MEDIR` são provisórios |\n| `cyberdeck.py` | geometria (Part, sem dependências de GUI) |\n| `verificar.py` | checagem técnica: `freecadcmd verificar.py` |\n| `construir.py` | documento FreeCAD, STEP, lista de materiais, vistas |\n| `saida/step/` | STEP de cada peça usinada + montagem (para orçamento CNC) |\n| `saida/lista_materiais.csv` | lista de materiais |\n| `saida/furos_roscados.csv` | tabela de furos roscados (rosca, broca, profundidade, posição) |\n| `exportar_web.py` + `web/` | site 3D para GitHub Pages (`freecadcmd exportar_web.py` atualiza os dados; ver `web/README.md`) |\n\nPara abrir/fechar a tampa no FreeCAD: selecione `Tampa` → propriedade **Abertura**.\n\n## Construção\n\n- **Base** = `Bandeja` (fundo 2,5 + paredes 5, bloco 340×240×25) + `Deck` (tampo 7 mm com nicho do\n  teclado e alívio por baixo, pele de 2,5). Deck preso por 14× DIN 912 M3×10 **rebaixados** (cabeça\n  faceada: a tampa fecha por cima) em Helicoil M3 2D (abre para manutenção sem gastar a rosca do alumínio).\n- **Tampa** = `Moldura_Tela` (5 mm, prende o OLED pela frente, 13× DIN 912 M2,5×6 rebaixados e à mostra)\n  + `Casco_Tampa` (costas em módulos com placa de vidro + espinha traseira que guarda a placa eDP/driver).\n  Casco e moldura são ocados em volta da tela (quadro oco, pele de 2 mm).\n- **Dobradiças**: 2× **Southco E6-10-208-50** (E6 Medium, torque constante simétrico 0,9 N·m, furo\n  passante Ø4,5), montadas nas faces traseiras com 8× DIN 912 M4×10 em Helicoil M4 1,5D.\n  A medida segue o datasheet (folha 38 × 40, furos 17,8 × 28, eixo a 5 mm da face, `saida/ref_southco_e6_datasheet.png`).\n  Escolha pelo cálculo: tampa ≈ 1,42 kg, CG a 102 mm do eixo → 1,09 N·m no uso (80–135°);\n  2 × 0,9 = 1,8 N·m (1,65×, segura firme em qualquer ângulo).\n- **Janelas RF** (POM-C preto) no topo da espinha: alumínio bloqueia Wi-Fi/Bluetooth; as antenas\n  ficam coladas por baixo dessas janelas.\n- Cabos tela/antenas passam por furos Ø8 nas traseiras, a 11 mm do eixo (o laço quase não muda de\n  comprimento ao abrir); usar capa trançada no trecho exposto.\n- Ventilação: entrada no fundo sob a ventoinha, saída na lateral esquerda.\n\n## Linguagem visual (v2 — \"tático\")\n\nInspirada num conceito de equipamento tático: **corpo de cima verde oliva fosco** (Deck + Casco da tampa,\nCerakote H-236 O.D. Green) sobre **corpo de baixo preto** (Bandeja + Moldura, anodização dura preta),\ncom a divisão horizontal bem marcada.\n\n- **Protetores de canto** pretos em L nos 4 cantos da frente (base e tampa), salientes 1,5 mm, arestas\n  chanfradas e ranhura na altura da junta; cada um preso por 2 DIN 912 aparentes (M3 na base, M2,5 na tampa).\n  O corpo tem o encaixe com o mesmo raio R3, então protetor e corpo fecham sem fresta.\n- **Trilho vazado** na frente da bandeja (barras, chevrons, janela inclinada e janela central, 2,5 de\n  profundidade; parede da bandeja passou para 5 mm). Lateral esquerda: rebaixo angular com as saídas de ar\n  passantes. Conectores ficam num painel rebaixado de 1,5 nas duas laterais.\n- **Topo da tampa em módulos**: duas linhas de divisão + **placa de vidro fumê** encaixada em degrau\n  (acrílico 1,2 mm cortado a laser, colado com VHB) e filete R3 nas arestas de cima.\n- **Chave deslizante** na lateral direita (botão usinado com ranhuras, curso de 3) — prevista para uma\n  micro chave SS-12D00 (sinal) que entra no garfo da haste.\n- **Marcações** gravadas a laser (0,15) — no Cerakote/anodizado a gravação fica clara. No vidro é serigrafia\n  branca. Textos e posições em `MARCACOES` (`parametros.py`).\n\n## Componentes internos (v3)\n\nModelados no grupo **Componentes** de cada parte (Base/Tampa). Do Duo 11 (pela desmontagem iFixit/MyFixGuide):\n\n- **Placa-mãe** SVD11 com CPU (BGA1023), chipset HM76 e RAM soldada; **SSD mSATA** Toshiba THNSNS128GMCP\n  no soquete da placa.\n- **Cooler** original (placa de cobre comum à CPU e ao chipset, heatpipe, radiador) com a **ventoinha** radial;\n  o radiador encosta nas saídas de ar da lateral esquerda, a entrada é pelo fundo.\n- **Placa Wi-Fi/RJ45** (Intel 6235 half mini PCIe + RJ45) — RJ45 sai pela **traseira**.\n- **Placas de conectores**: direita (USB-A x2 + HDMI, o HDMI já vem por cabo flat no Duo 11) e esquerda\n  (DC-in, P2, SD). Se esses conectores forem soldados na placa-mãe, viram extensões (cabo/FPC).\n- **Bateria** VGP-BPS31 (7,4 V, 37 Wh), **alto-falantes** (som sai por grades em colmeia no fundo),\n  **teclado** com trackpoint óptico, **antenas** flex coladas sob as janelas RF.\n\nComprar: OLED + placa eDP, **botão power 12 mm** antivandalismo com LED (rebaixado no deck, a tampa não\naperta quando fecha), **micro chave SS-12D00** atrás do botão deslizante (é de sinal, 0,5 A: serve para\nfunção tipo desligar Wi-Fi/tela; **não** usar para cortar a bateria) e os cabos listados em\n`lista_materiais.csv`.\n\nA verificação confere que nenhum componente bate em outro ou na carcaça (inclusive conectores nos recortes).\n\n## Regras de usinagem respeitadas\n\n- Cantos internos verticais com raio ≥ 3 (fresa Ø6); bolsões de encaixe justo (painel, teclado) com\n  R1 e folga de 0,5 para o canto vivo da peça comprada não bater no raio.\n- Paredes ≥ 3, peles ≥ 1,8; fundo de furo cego com ≥ 0,8 de material (checado).\n- Rebaixos DIN 974-1, furos de folga ISO 273 média, brocas de rosca: M2 1,6 · M2,5 2,05 ·\n  M3 STI 3,2 · M4 STI 4,2.\n- Engajamento ≥ 1,5d em todas as roscas (checado).\n- Recortes de portas, saídas de ar, trilho vazado e furos dos protetores pedem fixação de lado (ou 4º eixo);\n  o trilho usa fresa Ø2 (cantos R1).\n- Acabamento: jato de microesferas antes de tudo; peças pretas com anodização dura, verdes com Cerakote\n  (mascarar furos roscados e faces de encaixe do Cerakote, que soma ~25 µm).\n\n## Verificação (`freecadcmd verificar.py`)\n\nPassou: sem interferências, todas as roscas OK, tampa abre até 150° sem colidir, o conjunto não tomba\npara trás até 150° (pés traseiros a 12 mm da borda).\n\n## O que falta medir (valores provisórios em `parametros.py`)\n\n1. **Placa-mãe**: contorno, furos de fixação, altura dos componentes, posição de cada conector\n   (USB, HDMI, DC-in, áudio, SD) → `PLACA` e `PORTAS`.\n2. **Ventoinha + heatpipe**: posição e saída de ar → `VENTOINHA`.\n3. **Teclado** (original do Duo 11): contorno e espessura → `TECLADO`.\n4. **Bateria** → `BATERIA`.\n5. **OLED**: modelo escolhido → contorno, espessura, área ativa, lado do flat → `PAINEL`;\n   e se a placa sai eDP direto ou se precisa de placa driver (HDMI→eDP) → `DRIVER_TELA`.\n\n## Segunda tela (v4)\n\nBarra LCD **8,8\" HannStar HSD088IPW1** (IPS 1920×480, kit \"AIDA64 sub display\" com placa driver HDMI).\nO teclado foi para a frente (`TECLADO[\"y0\"] = 20`, no lugar do apoio de mãos) e a barra fica atrás dele,\nentre o teclado e as dobradiças.\n\n- **Deck**: janela da área ativa (218,88 × 54,72 + 0,5 de folga, chanfro 0,8 na boca) e bolsão do módulo\n  (231,3 × 64,3 × 6,4) por baixo, deixando **lábio de 1,5**: a tela fica 1,5 abaixo do deck e a tampa não encosta.\n- **Suporte_Barra**: chapa Al 5052 1 mm (laser) sob o módulo, presa por 4× DIN 912 M2×5 em 4 ressaltos Ø6\n  do deck (o módulo desce 0,9 abaixo do deck). A placa HDMI fica pendurada na chapa por 4 espaçadores M2×8,\n  sobre a bateria (2 mm de folga).\n- **Sinal**: HDMI interno vindo da saída HDMI do Duo 11 (cabo flat FPV/ribbon com conectores em 90°) —\n  a porta HDMI externa da direita deixa de existir ou vira só a da barra. Alimentação 5 V pela USB da placa driver.\n- `# MEDIR`: deslocamento da área ativa dentro do módulo, saída do FPC e medidas da placa HDMI (`DRIVER_BARRA`).\n"
 }
