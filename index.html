@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DK-11 · Cyberdeck VAIO Duo 11</title>
+<meta name="description" content="Visualizador 3D do cyberdeck DK-11: carcaça de alumínio usinado com a placa de um Sony VAIO Duo 11.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<header class="topo">
+  <div class="marca">
+    <span class="marca-cod">DK-11</span>
+    <span class="marca-nome">Cyberdeck <b>VAIO Duo 11</b></span>
+  </div>
+  <div class="topo-status" id="status">carregando modelo…</div>
+  <button class="botao-icone so-celular" id="abrirPainel" aria-label="Abrir painel">☰</button>
+</header>
+
+<main class="layout">
+  <section class="palco" id="palco">
+    <canvas id="cena"></canvas>
+    <div class="carregando" id="carregando"><div class="barra"><i id="progresso"></i></div><span>baixando malhas…</span></div>
+
+    <div class="vistas" role="toolbar" aria-label="Vistas">
+      <button data-vista="iso" class="ativo">3D</button>
+      <button data-vista="frente">Frente</button>
+      <button data-vista="topo">Topo</button>
+      <button data-vista="lado">Lado</button>
+      <button data-vista="tras">Trás</button>
+    </div>
+
+    <div class="comandos">
+      <label class="controle">
+        <span>Abertura da tela <output id="valAbertura">110°</output></span>
+        <input type="range" id="abertura" min="0" max="150" step="1" value="110">
+      </label>
+      <label class="controle">
+        <span>Vista explodida <output id="valExplodir">0%</output></span>
+        <input type="range" id="explodir" min="0" max="100" step="1" value="0">
+      </label>
+      <div class="chaves">
+        <button class="chave" id="tRaiox" aria-pressed="false">Raio-X</button>
+        <button class="chave" id="tComp" aria-pressed="true">Componentes</button>
+        <button class="chave" id="tParaf" aria-pressed="true">Parafusos</button>
+        <button class="chave" id="tArestas" aria-pressed="true">Arestas</button>
+      </div>
+      <div class="acoes">
+        <button id="animar">▶ Abrir / fechar</button>
+        <button id="animarExplodir">✦ Explodir</button>
+        <button id="resetar">⟲ Resetar</button>
+      </div>
+    </div>
+
+    <aside class="ficha" id="ficha" hidden>
+      <button class="fechar" id="fecharFicha" aria-label="Fechar">×</button>
+      <div class="ficha-cat" id="fichaCat"></div>
+      <h2 id="fichaNome"></h2>
+      <dl id="fichaDados"></dl>
+      <div class="ficha-acoes">
+        <button id="isolar">Isolar</button>
+        <button id="esconder">Esconder</button>
+        <button id="perguntarPeca">Perguntar sobre esta peça</button>
+      </div>
+    </aside>
+    <div class="dica" id="dica">Arraste para girar · roda para zoom · botão direito para mover · clique numa peça</div>
+  </section>
+
+  <aside class="painel" id="painel">
+    <nav class="abas" role="tablist">
+      <button role="tab" data-aba="pecas" class="ativo">Peças</button>
+      <button role="tab" data-aba="materiais">Materiais</button>
+      <button role="tab" data-aba="duvidas">Dúvidas</button>
+      <button role="tab" data-aba="projeto">Projeto</button>
+    </nav>
+
+    <section class="aba" id="aba-pecas">
+      <input type="search" id="buscaPecas" placeholder="Buscar peça, material, parafuso…" autocomplete="off">
+      <div id="listaPecas" class="lista"></div>
+    </section>
+
+    <section class="aba" id="aba-materiais" hidden>
+      <p class="nota">O que usinar, o que comprar e o que sai do próprio Duo 11.</p>
+      <div id="tabelaMateriais"></div>
+    </section>
+
+    <section class="aba" id="aba-duvidas" hidden>
+      <input type="search" id="buscaFaq" placeholder="Digite sua dúvida (ex.: dobradiça, peso, tela)…" autocomplete="off">
+      <div id="listaFaq" class="faq"></div>
+
+      <div class="chat">
+        <div class="chat-cab">
+          <h3>Perguntar ao Claude</h3>
+          <button class="link" id="configChat">chave da API</button>
+        </div>
+        <div class="chat-config" id="chatConfig" hidden>
+          <p>Para perguntas que o FAQ não cobre. Cole sua chave da API da Anthropic: ela fica <b>só no seu navegador</b>
+            e vai direto para a API — quem pergunta paga o próprio uso.</p>
+          <input type="password" id="chaveApi" placeholder="sk-ant-…" autocomplete="off">
+          <label class="lembrar"><input type="checkbox" id="lembrarChave"> lembrar neste navegador</label>
+          <button id="salvarChave">Salvar</button>
+        </div>
+        <div class="chat-msgs" id="chatMsgs" aria-live="polite"></div>
+        <form class="chat-form" id="chatForm">
+          <textarea id="chatTexto" rows="2" placeholder="Pergunte qualquer coisa sobre o projeto…"></textarea>
+          <button type="submit" id="chatEnviar">Enviar</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="aba" id="aba-projeto" hidden>
+      <div id="resumoProjeto"></div>
+    </section>
+  </aside>
+</main>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
