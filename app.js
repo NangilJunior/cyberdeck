@@ -3,13 +3,14 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { toCreasedNormals } from "three/addons/utils/BufferGeometryUtils.js";
+import { criarTelas } from "./telas.js";
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];
-const PADRAO = { abertura: 110, explodir: 0, raiox: false, comp: true, paraf: true, arestas: true };
+const PADRAO = { abertura: 110, explodir: 0, raiox: false, comp: true, paraf: true, arestas: true, telas: true };
 const estado = { ...PADRAO, sel: null, ocultos: new Set(), isolado: null };
 const CARCACA = new Set(["usinado", "comprado", "acabamento"]);
-let modelo, projeto, malhas = [];
+let modelo, projeto, telas, malhas = [];
 
 // ------------------------------------------------------------------ cena
 const canvas = $("#cena");
@@ -128,6 +129,7 @@ async function carregar() {
     (p.grupo === "tampa" ? tampa : base).add(malha);
     malhas.push(malha);
   }
+  telas = criarTelas(modelo, malhas);
   $("#carregando").hidden = true;
   const ok = projeto.verificacao.ok;
   $("#status").textContent = `${modelo.pecas.length} peças · verificação ${ok ? "OK" : "com pendências"}`;
@@ -175,7 +177,9 @@ function aplicarVisibilidade() {
     if (m.userData.linhas) m.userData.linhas.visible = estado.arestas && !fantasma;
     mat.needsUpdate = true;
   }
-  for (const [id, chave] of [["#tRaiox", "raiox"], ["#tComp", "comp"], ["#tParaf", "paraf"], ["#tArestas", "arestas"]]) {
+  if (telas) telas.ligadas = estado.telas;
+  for (const [id, chave] of [["#tRaiox", "raiox"], ["#tComp", "comp"], ["#tParaf", "paraf"], ["#tArestas", "arestas"],
+    ["#tTelas", "telas"]]) {
     $(id).setAttribute("aria-pressed", String(estado[chave]));
   }
   $$(".item[data-nome]").forEach((el) => el.classList.toggle("oculto", estado.ocultos.has(el.dataset.nome)));
@@ -240,6 +244,7 @@ canvas.addEventListener("pointerup", (e) => {
   camera.updateMatrixWorld();
   raio.setFromCamera(ponteiro, camera);
   let alvos = malhas.filter((m) => m.visible);
+  if (telas?.clicar(raio, alvos)) return;      // botão da barra de controle
   if (estado.raiox) {
     const internos = alvos.filter((m) => !CARCACA.has(m.userData.p.tipo));
     const acerto = raio.intersectObjects(internos, false)[0];
@@ -521,7 +526,8 @@ function markdown(md) {
 // ------------------------------------------------------------------ controles da interface
 $("#abertura").addEventListener("input", (e) => { tweens.delete("abertura"); estado.abertura = +e.target.value; aplicarAbertura(); });
 $("#explodir").addEventListener("input", (e) => { tweens.delete("explodir"); estado.explodir = +e.target.value; aplicarExplodir(); });
-for (const [id, chave] of [["#tRaiox", "raiox"], ["#tComp", "comp"], ["#tParaf", "paraf"], ["#tArestas", "arestas"]]) {
+for (const [id, chave] of [["#tRaiox", "raiox"], ["#tComp", "comp"], ["#tParaf", "paraf"], ["#tArestas", "arestas"],
+  ["#tTelas", "telas"]]) {
   $(id).addEventListener("click", () => { estado[chave] = !estado[chave]; aplicarVisibilidade(); });
 }
 $("#animar").addEventListener("click", () => animarValor("abertura", estado.abertura > 5 ? 0 : PADRAO.abertura, 1600));
@@ -569,6 +575,7 @@ $("#abrirPainel").addEventListener("click", () => $("#painel").classList.toggle(
 renderer.setAnimationLoop((agora) => {
   for (const f of [...tweens.values()]) f(agora);
   controles.update();
+  telas?.atualizar(agora);
   renderer.render(cena, camera);
 });
 
