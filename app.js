@@ -585,6 +585,10 @@ const xr = iniciarXR({
     if (modo === "immersive-vr") cena.background = new THREE.Color(0x0d100b);
     controles.enabled = false;
     selecionar(null);
+    // no XR a unidade é metro: o plano de corte de 1 (mm no desktop) cortaria tudo a menos de 1 m dos olhos
+    camera.near = 0.02;
+    camera.far = 50;
+    camera.updateProjectionMatrix();
     Object.assign(sol.shadow.camera, { left: -0.4, right: 0.4, top: 0.4, bottom: -0.4, near: 0.01, far: 3 });
     sol.shadow.camera.updateProjectionMatrix();
     sol.shadow.bias = -0.0002;
@@ -593,6 +597,9 @@ const xr = iniciarXR({
     chao.visible = grade.visible = true;
     cena.background = null;
     controles.enabled = true;
+    camera.near = 1;
+    camera.far = 20000;
+    camera.updateProjectionMatrix();
     Object.assign(sol.shadow.camera, SOMBRA_DESKTOP);
     sol.shadow.camera.updateProjectionMatrix();
     sol.shadow.bias = -0.0004;

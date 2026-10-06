@@ -86,6 +86,13 @@ export function iniciarXR({ renderer, cena, camera, mundo, malhas, telas, altern
     mundo.rotation.set(0, Math.atan2(p.x - mundo.position.x, p.z - mundo.position.z), 0);
   }
 
+  // superfície a no máximo ~1 m na horizontal e abaixo dos olhos (mesa, não o chão lá longe)
+  function alcance(matriz) {
+    const cam = new THREE.Vector3().setFromMatrixPosition(renderer.xr.getCamera().matrixWorld);
+    const p = new THREE.Vector3().setFromMatrixPosition(matriz);
+    return Math.hypot(p.x - cam.x, p.z - cam.z) < 1.0 && cam.y - p.y > 0.15 && cam.y - p.y < 1.0;
+  }
+
   function colocar(matriz) {
     mundo.position.setFromMatrixPosition(matriz);
     virarParaUsuario();
@@ -127,7 +134,7 @@ export function iniciarXR({ renderer, cena, camera, mundo, malhas, telas, altern
       } catch { fonteHit = null; }
     }
     // sem detecção de superfície (ou demorou): coloca na frente da pessoa
-    setTimeout(() => { if (!posicionado && !mira.visible) colocarNaFrente(); }, fonteHit ? 4000 : 300);
+    setTimeout(() => { if (!posicionado) colocarNaFrente(); }, fonteHit ? 2500 : 300);
     sessao.addEventListener("end", () => {
       fonteHit?.cancel?.();
       fonteHit = null;
@@ -161,8 +168,8 @@ export function iniciarXR({ renderer, cena, camera, mundo, malhas, telas, altern
       const pose = hits.length ? hits[0].getPose(refEspaco) : null;
       mira.visible = !!pose && !segurando;
       if (pose) mira.matrix.fromArray(pose.transform.matrix);
-      if (!posicionado && pose) {
-        // primeira superfície encontrada: põe o cyberdeck nela (toque depois para mudar de lugar)
+      if (!posicionado && pose && alcance(mira.matrix)) {
+        // primeira superfície ao alcance das mãos (mesa): põe o cyberdeck nela (toque depois para mudar de lugar)
         colocar(mira.matrix);
       }
     },
