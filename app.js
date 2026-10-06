@@ -133,6 +133,8 @@ async function carregar() {
     malhas.push(malha);
   }
   telas = criarTelas(modelo, malhas);
+  corAtual = corSalva();
+  montarPaleta();
   $("#carregando").hidden = true;
   const ok = projeto.verificacao.ok;
   $("#status").textContent = `${modelo.pecas.length} peças · verificação ${ok ? "OK" : "com pendências"}`;
@@ -141,6 +143,7 @@ async function carregar() {
   montarMateriais();
   montarFaq();
   montarProjeto();
+  aplicarCor(corAtual, false);
   aplicarTudo();
   irPara("iso", false);
 }
@@ -281,7 +284,7 @@ function mostrarFicha(p) {
     linhas.push(["Item", p.material]);
     if (p.origem) linhas.push(["Origem", p.origem]);
   } else {
-    linhas.push(["Material", p.material]);
+    linhas.push(["Material", comCor(p.material)]);
     if (p.obs) linhas.push(["Função", p.obs]);
   }
   linhas.push(["Medidas", `${p.medidas.join(" × ")} mm`]);
@@ -329,6 +332,81 @@ $("#listaPecas").addEventListener("click", (e) => {
 });
 $("#buscaPecas").addEventListener("input", (e) => montarListaPecas(e.target.value));
 
+// ------------------------------------------------------------------ cor da carcaça (acabamento Cerakote)
+// Tons aproximados das cores reais da Cerakote série H, só para a visualização — confirme na carta física.
+const CORES = [
+  { cod: "H-236", nome: "O.D. Green", hex: "#545c42" },
+  { cod: "H-267", nome: "MagPul Flat Dark Earth", hex: "#8a7557" },
+  { cod: "H-234", nome: "Sniper Grey", hex: "#6c7073" },
+  { cod: "H-237", nome: "Tungsten", hex: "#55585a" },
+  { cod: "H-146", nome: "Graphite Black", hex: "#2a2d2e" },
+  { cod: "H-148", nome: "Burnt Bronze", hex: "#5e4433" },
+  { cod: "H-171", nome: "NRA Blue", hex: "#23476e" },
+  { cod: "H-221", nome: "Crimson", hex: "#7d2b33" },
+  { cod: "H-122", nome: "Gold", hex: "#977c35" },
+  { cod: "H-168", nome: "Zombie Green", hex: "#76913a" },
+  { cod: "H-151", nome: "Satin Aluminum", hex: "#a6a8aa", metal: 0.55, rugos: 0.45 },
+  { cod: "H-297", nome: "Stormtrooper White", hex: "#e4e4df" },
+  { cod: "—", nome: "Sem pintura (anodizado natural)", hex: "#b9bcbe", metal: 0.78, rugos: 0.3 },
+];
+let corAtual = 0;
+
+function corSalva() {
+  try {
+    const i = CORES.findIndex((c) => c.cod === localStorage.getItem("dk11-cor"));
+    return i < 0 ? 0 : i;
+  } catch { return 0; }
+}
+
+function eVerde(p) { return p.acab === "verde"; }
+
+function nomeCor(i) { const c = CORES[i]; return c.cod === "—" ? c.nome : `Cerakote ${c.cod} ${c.nome}`; }
+
+/** Troca o nome do acabamento nos textos do projeto pela cor escolhida. */
+function comCor(txt) {
+  if (!txt || corAtual === 0) return txt;
+  const c = CORES[corAtual];
+  const fosco = /\(fosco\)/.test(txt) ? " (fosco)" : "";
+  const novo = c.cod === "—" ? "anodização natural, sem pintura" : `Cerakote ${c.cod} ${c.nome}${fosco}`;
+  return txt.replace(/Cerakote[^,;+]*/g, (m) => novo + (m.endsWith(" ") ? " " : ""));
+}
+
+function aplicarCor(i, guardar = true) {
+  corAtual = i;
+  const c = CORES[i];
+  for (const m of malhas) {
+    if (!eVerde(m.userData.p)) continue;
+    m.material.color.set(c.hex);
+    m.material.metalness = c.metal ?? modelo.acabamentos.verde[0];
+    m.material.roughness = c.rugos ?? modelo.acabamentos.verde[1];
+    m.material.needsUpdate = true;
+    m.userData.p.cor = c.hex;
+  }
+  $$("#paletaCores button").forEach((b, k) => b.setAttribute("aria-pressed", String(k === i)));
+  $("#corNome").textContent = nomeCor(i);
+  $$(".item[data-nome]").forEach((el) => {
+    const p = modelo.pecas.find((x) => x.nome === el.dataset.nome);
+    if (p && eVerde(p)) el.querySelector(".cor").style.background = c.hex;
+  });
+  if (estado.sel) {
+    const p = modelo.pecas.find((x) => x.nome === estado.sel);
+    if (p && eVerde(p)) mostrarFicha(p);
+  }
+  montarMateriais();
+  montarProjeto();
+  if (guardar) { try { localStorage.setItem("dk11-cor", c.cod); } catch { /* sem storage */ } }
+}
+
+function montarPaleta() {
+  $("#paletaCores").innerHTML = CORES.map((c, i) => `
+    <button data-cor="${i}" aria-pressed="${i === corAtual}" title="${esc(nomeCor(i))}"
+      style="background:${c.hex}"><span class="sr">${esc(nomeCor(i))}</span></button>`).join("");
+  $("#paletaCores").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-cor]");
+    if (b) aplicarCor(+b.dataset.cor);
+  });
+}
+
 // ------------------------------------------------------------------ painel: materiais
 function montarMateriais() {
   const ordem = ["Usinar", "Comprar", "Reaproveitar do Duo 11", "Parafusos"];
@@ -336,7 +414,7 @@ function montarMateriais() {
   for (const l of projeto.lista_materiais) (grupos.get(l.categoria) ?? grupos.set(l.categoria, []).get(l.categoria)).push(l);
   $("#tabelaMateriais").innerHTML = [...grupos].filter(([, l]) => l.length).map(([cat, l]) => `
     <div class="tabela-grupo"><h4>${esc(cat)}</h4><table>${l.map((x) => `
-      <tr><td>${esc(x.item)}${x.material ? `<small>${esc(x.material)}</small>` : ""}</td><td class="qtd">${x.qtd}×</td></tr>`).join("")}
+      <tr><td>${esc(comCor(x.item))}${x.material ? `<small>${esc(comCor(x.material))}</small>` : ""}</td><td class="qtd">${x.qtd}×</td></tr>`).join("")}
     </table></div>`).join("");
 }
 
@@ -368,7 +446,7 @@ function montarProjeto() {
   const relatorio = v.relatorio.filter((l) => !/^=+$/.test(l)).join("\n");
   $("#resumoProjeto").innerHTML = `
     <p class="nota">${esc(projeto.resumo)}</p>
-    <dl class="specs">${projeto.specs.map(([k, val]) => `<dt>${esc(k)}</dt><dd>${esc(val)}</dd>`).join("")}</dl>
+    <dl class="specs">${projeto.specs.map(([k, val]) => `<dt>${esc(k)}</dt><dd>${esc(comCor(val))}</dd>`).join("")}</dl>
     <div class="verif${v.ok ? " ok" : ""}"><h4>${v.ok ? "✓ Verificação técnica OK" : "Verificação com pendências"}</h4><pre>${esc(relatorio)}</pre></div>
     <div class="doc">${markdown(projeto.readme)}</div>`;
 }

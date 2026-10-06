@@ -72,3 +72,11 @@ detectada (mesa), virado para você.
 - **grip** (botão lateral) segurando → pega na mão e solta onde quiser
 
 Precisa de HTTPS (o GitHub Pages já é). Código em `xr.js`.
+
+## Cor da carcaça
+
+Nos controles tem a paleta **Cor da carcaça**: troca o acabamento das peças pintadas (deck e casco da
+tampa) entre 12 tons da Cerakote série H e a opção sem pintura (anodizado natural, que também muda o
+brilho do material). A escolha fica guardada no navegador e aparece também nos textos de material da
+ficha da peça, da aba Materiais e da aba Projeto. Os tons são aproximações para a visualização —
+confirme na carta de cores física antes de fechar o acabamento.
