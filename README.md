@@ -37,7 +37,9 @@ Quando o modelo do FreeCAD mudar (medidas, tela escolhida…), regenere os dados
 ```sh
 cd ..                     # pasta do projeto (CyberdeckVaioDuo11)
 freecadcmd exportar_web.py
-cd web && git add data && git commit -m "Atualiza modelo" && git push
+cd web
+python3 versionar.py      # carimba ?v=<data-hora> nas URLs (ver "Cache" abaixo)
+git add -A && git commit -m "Atualiza modelo" && git push
 ```
 
 ## Chat com o Claude
@@ -80,3 +82,13 @@ tampa) entre 12 tons da Cerakote série H e a opção sem pintura (anodizado nat
 brilho do material). A escolha fica guardada no navegador e aparece também nos textos de material da
 ficha da peça, da aba Materiais e da aba Projeto. Os tons são aproximações para a visualização —
 confirme na carta de cores física antes de fechar o acabamento.
+
+## Cache do GitHub Pages
+
+O Pages serve tudo com `Cache-Control: max-age=600` e **cada arquivo expira num horário diferente**:
+dá para o navegador pegar o `index.html` novo junto com o `app.js` velho, e a página abre pela metade
+(foi o que aconteceu quando a paleta de cores subiu: a caixa aparecia vazia).
+
+`python3 versionar.py` resolve isso carimbando `?v=<data-hora>` nas referências de `style.css`,
+`app.js`, `telas.js`, `xr.js` e dos arquivos de `data/`. Como o HTML novo passa a apontar para URLs
+novas, o navegador é obrigado a baixar tudo junto. **Rodar sempre antes do commit do site.**
