@@ -206,3 +206,6 @@ td small { display: block; color: var(--texto-3); font-size: 12px; }
   .ficha { left: 16px; right: 16px; width: auto; top: 56px; max-height: 40%; }
   .dica { display: none; }
 }
+
+.vistas .xr { color: #ffb21f; border-left: 1px solid rgba(255, 255, 255, 0.08); font-weight: 700; }
+.dica.destaque { color: #ffb21f; }

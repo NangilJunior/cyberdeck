@@ -560,7 +560,7 @@ export function criarTelas(modelo, malhas) {
       const hit = raio.intersectObject(barra.m, false)[0];
       if (!hit) return false;
       const outro = raio.intersectObjects(alvos.filter((m) => m !== barra.m.parent), false)[0];
-      if (outro && outro.distance < hit.distance - 0.05) return false;
+      if (outro && outro.distance < hit.distance * 0.995) return false;   // algo na frente (ex.: tampa fechada)
       const px = hit.uv.x * barra.cv.width, py = (1 - hit.uv.y) * barra.cv.height;
       const i = BOTOES.findIndex((_, k) => {
         const [x, y, w, h] = celula(k);

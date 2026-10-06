@@ -59,3 +59,16 @@ Não coloque uma chave sua no código: em site público ela fica visível para q
 | `data/modelo.bin` | malhas de todas as peças (binário, ~2 MB) |
 | `data/modelo.json` | manifesto das peças: material, origem, cor, vetor da vista explodida |
 | `data/projeto.json` | specs, lista de materiais, verificação técnica, FAQ e README do projeto |
+
+## Realidade aumentada (WebXR)
+
+Abra o site no **navegador do Meta Quest** (ou no Chrome do Android com ARCore) e toque em **AR**
+(ou **VR**) no canto de cima. O cyberdeck aparece **em tamanho real** sobre a primeira superfície
+detectada (mesa), virado para você.
+
+- gatilho / pinça na **barra de 8,8"** → aperta os botões (tema, bloquear, brilho…)
+- gatilho / pinça no **cyberdeck** → abre / fecha a tampa
+- gatilho / pinça **fora dele** → muda de lugar (para onde está a mira)
+- **grip** (botão lateral) segurando → pega na mão e solta onde quiser
+
+Precisa de HTTPS (o GitHub Pages já é). Código em `xr.js`.

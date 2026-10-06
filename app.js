@@ -4,6 +4,7 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { toCreasedNormals } from "three/addons/utils/BufferGeometryUtils.js";
 import { criarTelas } from "./telas.js";
+import { iniciarXR } from "./xr.js";
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];
@@ -49,9 +50,11 @@ controles.maxDistance = 3000;
 controles.minDistance = 80;
 
 // FreeCAD é Z para cima; three.js é Y para cima
+const mundo = new THREE.Group();          // escala/posição do conjunto (1 = mm no desktop; 0,001 = metros no AR/VR)
+cena.add(mundo);
 const raiz = new THREE.Group();
 raiz.rotation.x = -Math.PI / 2;
-cena.add(raiz);
+mundo.add(raiz);
 const base = new THREE.Group();
 const pivoTampa = new THREE.Group();
 const tampa = new THREE.Group();
@@ -215,7 +218,7 @@ const VISTAS = {
 let vistaAtual = "iso";
 function irPara(nome, suave = true) {
   vistaAtual = nome;
-  $$(".vistas button").forEach((b) => b.classList.toggle("ativo", b.dataset.vista === nome));
+  $$(".vistas button[data-vista]").forEach((b) => b.classList.toggle("ativo", b.dataset.vista === nome));
   const caixa = new THREE.Box3();
   malhas.filter((m) => m.visible).forEach((m) => caixa.expandByObject(m));
   const esfera = caixa.getBoundingSphere(new THREE.Sphere());
@@ -542,7 +545,7 @@ $("#resetar").addEventListener("click", () => {
   aplicarTudo();
   irPara("iso");
 });
-$$(".vistas button").forEach((b) => b.addEventListener("click", () => irPara(b.dataset.vista)));
+$$(".vistas button[data-vista]").forEach((b) => b.addEventListener("click", () => irPara(b.dataset.vista)));
 $("#fecharFicha").addEventListener("click", () => selecionar(null));
 $("#isolar").addEventListener("click", () => {
   estado.isolado = estado.isolado ? null : estado.sel;
@@ -571,10 +574,68 @@ function abrirAba(nome) {
 $$(".abas button").forEach((b) => b.addEventListener("click", () => abrirAba(b.dataset.aba)));
 $("#abrirPainel").addEventListener("click", () => $("#painel").classList.toggle("aberto"));
 
+// ------------------------------------------------------------------ realidade aumentada / virtual
+const SOMBRA_DESKTOP = { left: -450, right: 450, top: 450, bottom: -450, near: 10, far: 2000 };
+const xr = iniciarXR({
+  renderer, cena, camera, mundo, malhas,
+  telas: () => telas,
+  alternarTampa: () => animarValor("abertura", estado.abertura > 5 ? 0 : PADRAO.abertura, 1600),
+  aoEntrar(modo) {
+    chao.visible = grade.visible = false;
+    if (modo === "immersive-vr") cena.background = new THREE.Color(0x0d100b);
+    controles.enabled = false;
+    selecionar(null);
+    Object.assign(sol.shadow.camera, { left: -0.4, right: 0.4, top: 0.4, bottom: -0.4, near: 0.01, far: 3 });
+    sol.shadow.camera.updateProjectionMatrix();
+    sol.shadow.bias = -0.0002;
+  },
+  aoSair() {
+    chao.visible = grade.visible = true;
+    cena.background = null;
+    controles.enabled = true;
+    Object.assign(sol.shadow.camera, SOMBRA_DESKTOP);
+    sol.shadow.camera.updateProjectionMatrix();
+    sol.shadow.bias = -0.0004;
+    sol.position.set(300, 600, 350);
+    sol.target.position.set(0, 0, 0);
+    irPara(vistaAtual, false);
+  },
+});
+cena.add(sol.target);
+const solXR = new THREE.Vector3(0.3, 0.6, 0.35);
+
+async function prepararBotoesXR() {
+  const modos = await xr.suportes();
+  for (const [id, modo] of [["#botaoAR", "immersive-ar"], ["#botaoVR", "immersive-vr"]]) {
+    const b = $(id);
+    const ok = modos.includes(modo);
+    b.hidden = !ok && !(modo === "immersive-ar" && !modos.length);   // sem WebXR: mostra só o AR (explica ao clicar)
+    b.addEventListener("click", async () => {
+      if (!ok) {
+        $("#dica").textContent = "Realidade aumentada: abra esta página no navegador do Meta Quest (ou no Chrome do Android com ARCore).";
+        $("#dica").classList.add("destaque");
+        return;
+      }
+      if (renderer.xr.isPresenting) return xr.sair();
+      try { await xr.entrar(modo); } catch (err) {
+        console.error(err);
+        $("#dica").textContent = `Não consegui iniciar o ${modo === "immersive-ar" ? "AR" : "VR"} (${err.message}).`;
+      }
+    });
+  }
+}
+prepararBotoesXR();
+
 // ------------------------------------------------------------------ laço
-renderer.setAnimationLoop((agora) => {
+renderer.setAnimationLoop((agora, frame) => {
   for (const f of [...tweens.values()]) f(agora);
-  controles.update();
+  if (renderer.xr.isPresenting) {
+    xr.quadro(frame);
+    sol.position.copy(mundo.position).add(solXR);
+    sol.target.position.copy(mundo.position);
+  } else {
+    controles.update();
+  }
   telas?.atualizar(agora);
   renderer.render(cena, camera);
 });
