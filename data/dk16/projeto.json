@@ -12,7 +12,7 @@
   ],
   [
    "Peso estimado",
-   "6.9 kg (base 3.27 + berço com Ally 0.93 + tampa com monitor 2.70)"
+   "6.9 kg (base 3.27 + berço com Ally 0.93 + tampa com monitor 2.74)"
   ],
   [
    "Computador",
@@ -301,7 +301,7 @@
    "peças: 89 (53 parafusos)",
    "  Bandeja              1595 g   bloco bruto 380 x 290 x 35",
    "  Deck                  531 g   bloco bruto 380 x 290 x 10",
-   "  Casco_Tampa          1511 g   bloco bruto 380 x 290 x 28",
+   "  Casco_Tampa          1559 g   bloco bruto 380 x 290 x 28",
    "  Moldura_Tela          201 g   bloco bruto 380 x 290 x 6",
    "  Protetor_Base_Esq      50 g   bloco bruto 50 x 50 x 40",
    "  Protetor_Tampa_Esq     21 g   bloco bruto 50 x 50 x 19",
@@ -313,9 +313,9 @@
    "  Guia_Cabo               6 g   bloco bruto 24 x 20 x 18",
    "  Placa_Vidro             4 g   bloco bruto 108 x 34 x 3",
    "  Botao_Chave             1 g   bloco bruto 14 x 18 x 10",
-   "massa: base 3.27 + berço 0.93 (com o Ally de 0.61) + tampa 2.70 (com o monitor) = 6.89 kg",
-   "CG da tampa a 149 mm do eixo; torque 2.76 N·m (uso), 2.76 N·m (pico)",
-   "dobradiças da tampa: 2x E6-10-216-50 = 3.6 N·m (alvo 1,25 x 2.76 = 3.45)",
+   "massa: base 3.27 + berço 0.93 (com o Ally de 0.61) + tampa 2.74 (com o monitor) = 6.94 kg",
+   "CG da tampa a 147 mm do eixo; torque 2.78 N·m (uso), 2.78 N·m (pico)",
+   "dobradiças da tampa: 2x E6-10-216-50 = 3.6 N·m (alvo 1,25 x 2.78 = 3.47)",
    "berço + Ally: torque máx 0.48 N·m -> 2x dobradiça de atrito tipo barril, 0,25 N·m, eixo Ø8 (2x = 0,5 N·m)",
    "abertura da tampa livre até 130°; berço livre até 75°",
    "com o berço a 70°, a tampa abre de 60° em diante",
@@ -359,11 +359,11 @@
   },
   {
    "p": "Que dobradiças a tampa usa?",
-   "r": "Duas Southco E6-10-216-50, de torque constante. A tampa com o monitor pede 2.76 N·m; o par dá 3,6 N·m. As do DK-11 (E6-10-208) não dariam conta: o monitor de 16\" é bem mais pesado que a tela de 13,3\"."
+   "r": "Duas Southco E6-10-216-50, de torque constante. A tampa com o monitor pede 2.78 N·m; o par dá 3,6 N·m. As do DK-11 (E6-10-208) não dariam conta: o monitor de 16\" é bem mais pesado que a tela de 13,3\"."
   },
   {
    "p": "Quanto pesa?",
-   "r": "Pela conta do modelo: base 3.27 kg, berço com o Ally 0.93 kg e tampa com o monitor 2.70 kg — cerca de 6.9 kg no total. É o ponto fraco do projeto: paredes cheias de alumínio usinado. O README lista três formas de aliviar (nervurar mais, casco de chapa, ou aceitar como deck de mesa)."
+   "r": "Pela conta do modelo: base 3.27 kg, berço com o Ally 0.93 kg e tampa com o monitor 2.74 kg — cerca de 6.9 kg no total. É o ponto fraco do projeto: paredes cheias de alumínio usinado. O README lista três formas de aliviar (nervurar mais, casco de chapa, ou aceitar como deck de mesa)."
   },
   {
    "p": "Ele tomba para trás?",
