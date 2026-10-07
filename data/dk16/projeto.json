@@ -1,0 +1,394 @@
+{
+ "codigo": "DK-16",
+ "nome": "ROG Ally",
+ "titulo": "DK-16 — Cyberdeck-dock para ROG Ally",
+ "resumo": "Proposta MK-II: um deck de alumínio usinado que transforma o ROG Ally em notebook. O Ally encaixa num berço basculante atrás do teclado e vira a 2ª tela; a principal é um monitor OLED de 16\" 3K preso pelo VESA dentro da tampa.",
+ "nota_materiais": "O que usinar, o que comprar e o que você já tem (o Ally e o monitor).",
+ "dica": "Arraste para girar · roda para zoom · botão direito para mover · clique numa peça · use “Inclinação do berço” para levantar o Ally",
+ "specs": [
+  [
+   "Dimensões fechado",
+   "379 × 288 × 55 mm (sem o Ally)"
+  ],
+  [
+   "Peso estimado",
+   "6.9 kg (base 3.27 + berço com Ally 0.93 + tampa com monitor 2.70)"
+  ],
+  [
+   "Computador",
+   "ASUS ROG Ally RC71L (2023) — removível, encaixa no berço"
+  ],
+  [
+   "Tela principal",
+   "EVICIV OLED 16\" 3K 2880x1800 120 Hz (portátil) — inteiro na tampa, pelo VESA"
+  ],
+  [
+   "2ª tela",
+   "a do próprio Ally, 7\" 1080p 120 Hz, num berço de 0° a 75°"
+  ],
+  [
+   "Ligação",
+   "1 USB-C do Ally → placa dock interna (DP 1.4 + USB + PD 65 W)"
+  ],
+  [
+   "Energia",
+   "USB-C PD 100 W na traseira; power bank interno opcional"
+  ],
+  [
+   "Carcaça",
+   "Al 6061-T6 — Cerakote O.D. Green + anodização dura preta"
+  ],
+  [
+   "Dobradiças da tampa",
+   "2× Southco E6-10-216-50 (torque constante)"
+  ],
+  [
+   "Berço",
+   "2× dobradiça de atrito tipo barril 0,25 N·m"
+  ],
+  [
+   "Abertura da tela",
+   "até 130° sem colisão; com o Ally em pé, a partir de 60°"
+  ],
+  [
+   "Parafusos",
+   "53 × DIN 912 sextavado interno"
+  ]
+ ],
+ "lista_materiais": [
+  {
+   "categoria": "Comprar",
+   "item": "Dobradiça de atrito tipo barril, 0,25 N·m, eixo Ø8 (2x = 0,5 N·m)",
+   "material": "",
+   "qtd": 2
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Dobradiça torque constante Southco E6-10-216-50",
+   "material": "Alumínio, pintura preta",
+   "qtd": 2
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Hub USB-C: PD-in 100 W passante + DisplayPort 1.4 + USB 3.x + RJ45",
+   "material": "",
+   "qtd": 1
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Power bank USB-C PD 100 W (opcional)",
+   "material": "",
+   "qtd": 1
+  },
+  {
+   "categoria": "Comprar",
+   "item": "TPU 85A 1.5 mm (corte a laser) com adesivo",
+   "material": "",
+   "qtd": 2
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Teclado slim 306 x 110 x 6",
+   "material": "",
+   "qtd": 1
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Trackpad 100 x 58 (I2C/USB)",
+   "material": "",
+   "qtd": 1
+  },
+  {
+   "categoria": "Já é seu",
+   "item": "ASUS ROG Ally RC71L (2023)",
+   "material": "",
+   "qtd": 1
+  },
+  {
+   "categoria": "Já é seu",
+   "item": "EVICIV OLED 16\" 3K 2880x1800 120 Hz (portátil)",
+   "material": "",
+   "qtd": 1
+  },
+  {
+   "categoria": "Parafusos",
+   "item": "DIN 912 M2 x 6",
+   "material": "Aço 12.9 oxidado preto (ou inox A2 enegrecido)",
+   "qtd": 4
+  },
+  {
+   "categoria": "Parafusos",
+   "item": "DIN 912 M2,5 x 10",
+   "material": "Aço 12.9 oxidado preto (ou inox A2 enegrecido)",
+   "qtd": 4
+  },
+  {
+   "categoria": "Parafusos",
+   "item": "DIN 912 M2,5 x 7",
+   "material": "Aço 12.9 oxidado preto (ou inox A2 enegrecido)",
+   "qtd": 16
+  },
+  {
+   "categoria": "Parafusos",
+   "item": "DIN 912 M3 x 10",
+   "material": "Aço 12.9 oxidado preto (ou inox A2 enegrecido)",
+   "qtd": 4
+  },
+  {
+   "categoria": "Parafusos",
+   "item": "DIN 912 M3 x 12",
+   "material": "Aço 12.9 oxidado preto (ou inox A2 enegrecido)",
+   "qtd": 17
+  },
+  {
+   "categoria": "Parafusos",
+   "item": "DIN 912 M4 x 10",
+   "material": "Aço 12.9 oxidado preto (ou inox A2 enegrecido)",
+   "qtd": 8
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Bandeja (base, com o poço do berço)",
+   "material": "Al 6061-T6, anodização dura preta",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Berço do ROG Ally",
+   "material": "Al 6061-T6, Cerakote H-236 O.D. Green (fosco)",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Botão da chave deslizante",
+   "material": "Al 6061-T6, anodização dura preta",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Casco da tampa (costas do monitor)",
+   "material": "Al 6061-T6, Cerakote H-236 O.D. Green (fosco)",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Deck (tampo da base)",
+   "material": "Al 6061-T6, Cerakote H-236 O.D. Green (fosco)",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Garra do berço — dir.",
+   "material": "Al 6061-T6, anodização dura preta",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Garra do berço — esq.",
+   "material": "Al 6061-T6, anodização dura preta",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Guia do cabo USB-C",
+   "material": "Al 6061-T6, anodização dura preta",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Moldura do monitor",
+   "material": "Al 6061-T6, anodização dura preta",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Placa de vidro fumê",
+   "material": "Acrílico fumê 1,2 mm (corte a laser)",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Protetor de canto — base dir.",
+   "material": "Al 6061-T6, anodização dura preta",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Protetor de canto — base esq.",
+   "material": "Al 6061-T6, anodização dura preta",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Protetor de canto — tampa dir.",
+   "material": "Al 6061-T6, anodização dura preta",
+   "qtd": 1
+  },
+  {
+   "categoria": "Usinar",
+   "item": "Protetor de canto — tampa esq.",
+   "material": "Al 6061-T6, anodização dura preta",
+   "qtd": 1
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Inserto Helicoil M3 × 2D (inox)",
+   "material": "",
+   "qtd": 21
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Inserto Helicoil M4 × 1,5D (inox)",
+   "material": "",
+   "qtd": 8
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Pé de borracha adesivo Ø14 × 2",
+   "material": "",
+   "qtd": 4
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Cabo USB-C 90° → conector interno, 150 mm (berço → placa dock)",
+   "material": "10 Gbps + 100 W",
+   "qtd": 1
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Cabo USB-C ↔ USB-C 200 mm (placa dock → monitor, pela dobradiça)",
+   "material": "DP alt mode 4 pistas",
+   "qtd": 1
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Fonte GaN USB-C PD 100 W + cabo 5 A e-marked",
+   "material": "",
+   "qtd": 1
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Ímã de neodímio N42 Ø5 × 3 (segura o berço deitado)",
+   "material": "",
+   "qtd": 4
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Parafuso M4 × 8 de retenção do eixo do berço",
+   "material": "inox A2",
+   "qtd": 2
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Parafuso M4 × 10 do padrão VESA (prende o monitor)",
+   "material": "inox A2",
+   "qtd": 4
+  },
+  {
+   "categoria": "Comprar",
+   "item": "Capa trançada Ø8 (cabo da dobradiça)",
+   "material": "",
+   "qtd": 1
+  }
+ ],
+ "verificacao": {
+  "ok": true,
+  "erros": [],
+  "avisos": [],
+  "relatorio": [
+   "==========================================================================",
+   "DK-16 // ALLY  —  cyberdeck-dock para ROG Ally  —  verificação",
+   "peças: 89 (53 parafusos)",
+   "  Bandeja              1595 g   bloco bruto 380 x 290 x 35",
+   "  Deck                  531 g   bloco bruto 380 x 290 x 10",
+   "  Casco_Tampa          1511 g   bloco bruto 380 x 290 x 28",
+   "  Moldura_Tela          201 g   bloco bruto 380 x 290 x 6",
+   "  Protetor_Base_Esq      50 g   bloco bruto 50 x 50 x 40",
+   "  Protetor_Tampa_Esq     21 g   bloco bruto 50 x 50 x 19",
+   "  Garra_Esq               1 g   bloco bruto 25 x 15 x 5",
+   "  Protetor_Base_Dir      50 g   bloco bruto 50 x 50 x 40",
+   "  Protetor_Tampa_Dir     21 g   bloco bruto 50 x 50 x 19",
+   "  Garra_Dir               1 g   bloco bruto 22 x 15 x 5",
+   "  Berco_Ally            287 g   bloco bruto 301 x 85 x 34",
+   "  Guia_Cabo               6 g   bloco bruto 24 x 20 x 18",
+   "  Placa_Vidro             4 g   bloco bruto 108 x 34 x 3",
+   "  Botao_Chave             1 g   bloco bruto 14 x 18 x 10",
+   "massa: base 3.27 + berço 0.93 (com o Ally de 0.61) + tampa 2.70 (com o monitor) = 6.89 kg",
+   "CG da tampa a 149 mm do eixo; torque 2.76 N·m (uso), 2.76 N·m (pico)",
+   "dobradiças da tampa: 2x E6-10-216-50 = 3.6 N·m (alvo 1,25 x 2.76 = 3.45)",
+   "berço + Ally: torque máx 0.48 N·m -> 2x dobradiça de atrito tipo barril, 0,25 N·m, eixo Ø8 (2x = 0,5 N·m)",
+   "abertura da tampa livre até 130°; berço livre até 75°",
+   "com o berço a 70°, a tampa abre de 60° em diante",
+   "para fechar, o Ally sai do berço (premissa do projeto, não é folga verificada)",
+   "estabilidade: não tomba até 130°",
+   "RESULTADO: OK"
+  ]
+ },
+ "faq": [
+  {
+   "p": "Que computador é esse?",
+   "r": "É um cyberdeck que não tem placa-mãe própria: o computador é um ASUS ROG Ally (RC71L, 2023). O deck é a carcaça — teclado, trackpad, monitor de 16\", portas e energia — e o Ally encaixa num berço atrás do teclado, virando a segunda tela. Tirou o Ally do berço, ele volta a ser um portátil de jogos."
+  },
+  {
+   "p": "Qual é a tela grande?",
+   "r": "Um monitor portátil EVICIV OLED de 16\" 3K (2880×1800, 120 Hz, 500 nits, 100% DCI-P3). Ele entra inteiro na tampa, preso pelos próprios furos VESA: soltando 4 parafusos M4 ele sai e volta a ser um monitor portátil. Não é preciso desmontar o OLED."
+  },
+  {
+   "p": "Como o Ally se conecta, se ele só tem uma porta?",
+   "r": "O RC71L tem um único USB-C (combinado com a porta XG Mobile), e ele leva tudo ao mesmo tempo: vídeo (DisplayPort 1.4), dados (USB 3.2) e energia (65 W). Um cabo de 90° preso no berço liga essa porta a uma placa dock interna, que distribui para o monitor, o teclado, as portas e recarrega o Ally."
+  },
+  {
+   "p": "Dá 120 Hz no monitor de 16\"?",
+   "r": "Depende do dock. 2880×1800 a 120 Hz pede ~18,6 Gbps. Se o dock usar o DisplayPort com 2 pistas (o comum quando também quer USB 3), sobram ~12,9 Gbps: dá 3K a 60 Hz. Com 4 pistas (o USB cai para 2.0, o que não faz diferença para teclado e trackpad) são ~25,9 Gbps e os 120 Hz entram sem compressão. Por isso a recomendação é um dock que force 4 pistas."
+  },
+  {
+   "p": "Por que o berço não segura o Ally pelo topo?",
+   "r": "Porque é no topo que o Ally joga o ar quente para fora, e é lá também que ficam a porta USB-C, o microSD, o fone e os botões. O berço tem 74 mm de altura contra 111 mm do Ally: os 37 mm de cima ficam livres. Ele segura pelas laterais e pela base, e o encosto é vazado onde o Ally puxa ar pelas costas."
+  },
+  {
+   "p": "Como o deck fecha com o Ally dentro?",
+   "r": "Não fecha — é premissa do projeto. Para guardar, o Ally sai do berço e o berço vazio deita num poço na traseira da base, rente ao deck. Assim o conjunto fecha com 55 mm; com o Ally dentro seriam ~88 mm."
+  },
+  {
+   "p": "O berço fica em qualquer ângulo?",
+   "r": "Fica, de 0° (deitado) a 75°. Ele gira em duas dobradiças de atrito tipo barril de 0,25 N·m. Com o Ally, o berço pede 0.48 N·m no pior ângulo, então as duas juntas (0,5 N·m) seguram sem batente."
+  },
+  {
+   "p": "Por que a tampa abre só de 60° para cima com o Ally em pé?",
+   "r": "Porque o Ally em pé ocupa o espaço que a tampa varre ao fechar. A verificação gira a tampa contra o Ally de 5 em 5 graus: com o berço a 70°, ela só passa de 60°. Em uso normal a tela fica entre 100° e 130°."
+  },
+  {
+   "p": "Que dobradiças a tampa usa?",
+   "r": "Duas Southco E6-10-216-50, de torque constante. A tampa com o monitor pede 2.76 N·m; o par dá 3,6 N·m. As do DK-11 (E6-10-208) não dariam conta: o monitor de 16\" é bem mais pesado que a tela de 13,3\"."
+  },
+  {
+   "p": "Quanto pesa?",
+   "r": "Pela conta do modelo: base 3.27 kg, berço com o Ally 0.93 kg e tampa com o monitor 2.70 kg — cerca de 6.9 kg no total. É o ponto fraco do projeto: paredes cheias de alumínio usinado. O README lista três formas de aliviar (nervurar mais, casco de chapa, ou aceitar como deck de mesa)."
+  },
+  {
+   "p": "Ele tomba para trás?",
+   "r": "Não. A verificação calcula o centro de gravidade com o Ally no berço e a tampa aberta até 130°, e ele continua dentro dos pés traseiros."
+  },
+  {
+   "p": "Que portas ele tem?",
+   "r": "Esquerda: 2× USB-A 3.0, fone P2 e leitor SD. Direita: RJ45, HDMI (para um 2º monitor), USB-C livre e USB-A. Traseira: a entrada de energia USB-C PD de 100 W. O poço do berço ocupa a traseira inteira, por isso as portas foram para as laterais."
+  },
+  {
+   "p": "Funciona sem tomada?",
+   "r": "Com o power bank opcional, sim: há uma baia de 150 × 74 × 22 mm por baixo do teclado para um power bank USB-C PD de 100 W. Ele alimenta o monitor e ainda recarrega o Ally."
+  },
+  {
+   "p": "Qual teclado e trackpad?",
+   "r": "Ainda a escolher. O nicho é para um teclado slim de 306 × 110 × 6 mm; um mecânico low-profile também cabe, ajustando um parâmetro. O trackpad é de 100 × 58 mm, na frente do teclado."
+  },
+  {
+   "p": "É o mesmo projeto do DK-11?",
+   "r": "É uma proposta irmã, em paralelo. O DK-11 usa a placa-mãe de um VAIO Duo 11 dentro da carcaça; o DK-16 usa o ROG Ally como computador removível. Os dois compartilham a biblioteca de geometria, a linguagem visual (Cerakote verde oliva + anodizado preto) e o mesmo fluxo de verificação."
+  },
+  {
+   "p": "O que ainda falta definir?",
+   "r": "Medir no Ally a posição exata da USB-C e das grelhas de ar; medir a espessura real e pesar o monitor (o anúncio de 1,9 kg é com a capa); confirmar se o VESA dele é 75 ou 100; e escolher teclado, trackpad e placa dock. Tudo é parâmetro: muda o número e o modelo se refaz."
+  }
+ ],
+ "readme": "# DK-16 // ALLY — cyberdeck-dock para ROG Ally (proposta MK-II)\n\nSegunda proposta, irmã do **DK-11** (`../CyberdeckVaioDuo11`, placa do VAIO Duo 11). O DK-11\ncontinua de pé e **não foi tocado**: este é um projeto novo, em pasta separada, que só\nreaproveita a biblioteca de geometria (`geo.py`) e a mesma linguagem visual tática.\n\nA diferença conceitual é grande: aqui **não há placa-mãe**. O computador é o próprio ROG Ally,\nque entra e sai do deck em segundos. O cyberdeck é a carcaça: teclado, trackpad, tela grande,\nportas e energia.\n\n```\nCORTE LATERAL (em uso)                       GUARDADO (berço deitado, Ally fora)\n\n          ┌──────────────────┐                ┌────────────────────────┐  17 mm\n          │   EVICIV 16\"     │ tampa          └────────────────────────┘\n          │   2880x1800      │                ┌────────────────────────┐  38 mm\n          └─────────┬────────┘                └────────────────────────┘\n               ╔════╧═══╗ 70°                   total fechado = 55 mm\n             ╔═╝  ALLY  ╚═╗  berço\n     ┌───────╨────────────╨──────┐\n     │ [trackpad][== TECLADO ==] │ base 38 mm\n     └───────────────────────────┘\n       0      72        182  194           286 mm (Y)\n```\n\n---\n\n## 1. O que define o projeto\n\n| | |\n|---|---|\n| **Computador** | ASUS ROG Ally **RC71L** (2023) — 280 × 111 × 21,2~32,4 mm, 608 g |\n| **Tela principal** | **EVICIV OLED 16\" 3K** que você já tem — 2880 × 1800, 120 Hz, 500 nits, 354 × 243 × 7 mm |\n| **Tela secundária** | a própria tela de 7\" do Ally, num berço basculante atrás do teclado |\n| **Carcaça** | Al 6061-T6 usinado, Cerakote O.D. Green em cima / anodizado preto embaixo |\n| **Fechado** | 376 × 286 × 55 mm |\n| **Dobradiças** | 2x Southco E6 Medium torque constante (tampa) + 2x dobradiça de atrito tipo barril 0,25 N·m (berço) |\n\nO monitor **não é desmontado**. Ele entra inteiro na tampa, preso pelos próprios furos VESA, com\num lábio de 3 mm de alumínio segurando a borda. Desparafusou os 4 M4, tirou o monitor e ele volta\na ser um monitor portátil. Isso também evita abrir um produto de OLED de R$ 2 mil.\n\n## 2. Como funciona o berço do Ally\n\nO ponto crítico do projeto é térmico: **o Ally puxa ar pelas costas e joga ar quente pela aresta\nde cima** — e é também na aresta de cima que ficam a porta USB-C, o microSD, o jack e os botões\npower/volume. Por isso:\n\n- o encosto do berço é **vazado** nas duas janelas que coincidem com as grelhas de admissão;\n- o berço tem só **74 mm** de altura, contra 111 mm do Ally: os 37 mm de cima ficam **livres**,\n  com a exaustão, os botões e as portas totalmente desobstruídos;\n- o Ally é preso pelas **laterais** (mordentes com lábio de 3 mm sobre o bisel) e pela base\n  (prateleira), nunca pelo topo;\n- as duas **garras giratórias** dos cantos de cima travam o aparelho e giram para fora quando você\n  quer sacar o Ally e sair jogando.\n\nO berço **deita dentro de um poço** na traseira da base e fica rente ao deck, segurado por dois\nímãs N42. É isso que deixa o conjunto fechar com 55 mm em vez de virar um tijolo. Em uso, ele sobe\nem duas **dobradiças de atrito tipo barril** (Southco ST/E5 e equivalentes): corpo cilíndrico Ø16\nalojado num bloco usinado na bandeja, eixo Ø8 entrando no mordente, retido por um M4 pela face de\ndentro. Ele para em qualquer ângulo de 0° a 75° e não precisa de batente duro: o `verificar.py`\nmostra que o berço com o Ally pede só **0,48 N·m**, e duas unidades de 0,25 dão 0,50.\n\n> A primeira versão usava pino Ø8 com arruela Belleville e porca para regular o atrito. O\n> verificador reprovou por interferência, e o motivo era de montagem: a cabeça do pino ficava\n> enterrada no alumínio da bandeja — não havia como inserir nem regular. A dobradiça de barril\n> resolve isso sendo peça de catálogo, com o torque já definido de fábrica.\n\nUma **guia deslizante** num rasgo em T deixa o plugue USB-C de 90° pendurado ao lado do topo do\nAlly. Ela corre ao longo do topo do encosto justamente porque **ainda não medimos** onde fica a\nporta no RC71L — ajusta e aperta. Ela tem só 12 mm de altura de propósito: qualquer coisa que\npasse do plano do deck impede a tampa de fechar (a primeira versão tinha 30 mm e o\n`verificar.py` pegou a tampa batendo nela a 5°).\n\n### O detalhe que o verificador obrigou a desenhar\n\nUm berço que gira tem um problema que não se vê em corte estático: **tudo que fica acima do eixo\nvarre para a frente ao levantar.** O mordente tem 24,8 mm de altura (espessura do Ally + lábio),\nentão ao subir 20° a sua quina de cima entra 8 mm à frente do eixo, a 34 mm de altura — exatamente\ndentro da ponte do deck entre o teclado e o poço.\n\nA solução foi um **degrau**: nos primeiros 27 mm depois do eixo o mordente é só a chapa do\nencosto, e ele só sobe depois disso. O número vem do envelope de varredura — para cada ângulo θ,\na quina em (Δy, Δz) vai para\n\n```\ny = eixoY + Δy·cos θ − Δz·sen θ        z = eixoZ + Δy·sen θ + Δz·cos θ\n```\n\ne tem de valer `y ≥ boca do poço` **ou** `z > plano do deck` (aí já é ar livre). Isso vale para\n**todos** os pontos da aresta vertical do degrau, não só a quina de cima — a primeira conta checou\nsó a quina, deu 21,3 mm e o verificador reprovou a 75°. Com a aresta inteira, o pior caso\n(θ = 75°) pede Δy ≥ 25,3 — daí os 27. A cerca onde a base do Ally encosta ainda varre um pouco\nmais, e para ela há um **rasgo de varredura** na bandeja: a parede da frente do poço é rebaixada\naté a altura do eixo.\n\nO `verificar.py` faz a varredura de 0° a `BERCO_MAX` de 5 em 5° e reprova se sobrar qualquer\ninterferência, então esse envelope não precisa ser confiado no papel.\n\n### Rotina de uso\n\n1. abre a tampa (ela só passa de ~60° de abertura com o berço em pé — o `verificar.py` calcula\n   esse limite e o compara com `ABERTURA_MIN_BERCO`);\n2. levanta o berço, encaixa o Ally na prateleira, gira as duas garras;\n3. pluga o USB-C de 90° que está pendurado na guia. Pronto: 16\" + 7\" + teclado.\n\nPara guardar, o caminho é o inverso, e **o Ally sai do berço** — é premissa do projeto, não folga\nverificada: com o Ally dentro, a tampa não fecha (seriam 38 + 32,4 + 17 ≈ 88 mm). O berço vazio\ndeita no poço e o deck fecha nos 55 mm.\n\n## 3. A corrente elétrica (o ponto mais delicado)\n\nO RC71L tem **uma única porta USB-C** (combinada com a interface XG Mobile), e ela precisa levar\nao mesmo tempo: vídeo (DisplayPort 1.4 alt mode), dados (USB 3.2 Gen2) e energia (PD 3.0, 65 W).\nTudo passa por um hub interno:\n\n```\nfonte GaN 100 W ──► USB-C PD-in (traseira) ──┐\n                                             ├──► [ placa dock interna ]\n        Ally ◄── cabo 90° no mastro ─────────┘        │\n                                                      ├──► USB-C/DP ──► EVICIV (cabo interno pela dobradiça)\n                                                      ├──► USB ──► teclado + trackpad\n                                                      ├──► 2x USB-A + 1x USB-C + RJ45 + HDMI (laterais)\n                                                      └──► PD 65 W de volta para o Ally\n```\n\n**Banda:** 2880 × 1800 @ 120 Hz pede ~18,6 Gbps. Se o hub negociar DP com **2 pistas** (o normal\nquando ele também quer USB 3.x), sobram ~12,9 Gbps: dá 2880 × 1800 @ **60 Hz**, ou 120 Hz só com\nDSC. Se negociar **4 pistas** (o USB cai para 2.0), são ~25,9 Gbps e os 120 Hz entram sem DSC —\ne teclado/mouse em USB 2.0 é indiferente. **Então a recomendação é escolher um dock que force\n4 pistas DP**, e deixar um USB-C livre na lateral para quando você quiser USB 3 rápido.\n\nVale lembrar que o Z1 não vai renderizar jogo em 2880 × 1800 de qualquer jeito: o uso real é\ndesktop em 3K/60 e jogo em 1920 × 1200/120. Os dois cabem com folga.\n\n**Bateria (opcional):** há uma baia de 150 × 74 × 22 mm por baixo do teclado para um power bank\nUSB-C PD de 100 W. Com ele, o deck roda sem tomada e ainda recarrega o Ally.\n\n## 4. O que ainda falta medir / escolher\n\nTudo marcado no `parametros.py`:\n\n| Marca | O que é |\n|---|---|\n| `# MEDIR` | posição exata da USB-C, do jack e das grelhas de ar do Ally (paquímetro ou foto com régua) |\n| `# MEDIR` | espessura real do EVICIV na faixa de baixo (onde fica a placa) e **massa real** (o anúncio de 1,9 kg é com a capa) |\n| `# MEDIR` | confirmar se o VESA do EVICIV é 75 × 75 ou 100 × 100 |\n| `# ESCOLHER` | teclado slim 306 × 110 × 6 — ou um mecânico low-profile (é só subir `TECLADO[\"t\"]`) |\n| `# ESCOLHER` | trackpad 100 × 58 |\n| `# ESCOLHER` | placa dock: hub USB-C com PD-in 100 W passante + DP 1.4 + USB 3.x + RJ45 |\n\n## 5. Fluxo de trabalho (igual ao do DK-11)\n\n```sh\nfreecadcmd verificar.py        # interferência, rosca, varredura da tampa e do berço, torque, tombamento\nFreeCAD --single-instance /mnt/.../CyberdeckAllyDock/DK16Ally.FCMacro   # monta na GUI, salva .FCStd, STEP, BOM, vistas\n```\n\nArquivos:\n\n| Arquivo | O que faz |\n|---|---|\n| `parametros.py` | **só isso muda** quando chegarem as medidas |\n| `geo.py` | biblioteca de geometria (primitivas, furação DIN 912, gravações, dobradiça E6) — extraída do DK-11 |\n| `allydock.py` | geometria do produto: bandeja, deck, berço, tampa, referências, furação |\n| `verificar.py` | verificação técnica |\n| `construir.py` | monta no FreeCAD, exporta STEP/CSV e gera as vistas |\n\nNo FreeCAD o documento tem três `App::Part`: **Base** (parada), **Tampa** (propriedade\n`Abertura`, em graus) e **Berco** (propriedade `Inclinacao`). Mexer no valor move a peça.\n\n## 6. O trade-off que você vai querer decidir\n\nCom paredes cheias (como está no `parametros.py`), o `verificar.py` dá **~7 kg** montado, sem o\nAlly. Não é absurdo para um deck de 16\" usinado em bloco maciço de 6061 — mas é o dobro de um\nnotebook de 16\". Os dois pesos grandes são a **bandeja** (~1,7 kg) e o **casco da tampa**\n(~1,5 kg), e os dois estão no limite do que a dobradiça e a estabilidade aguentam:\no torque da tampa deu **2,6 N·m**, o que já obriga a usar o par **Southco E6-10-216-50**\n(3,6 N·m) em vez das 212 do DK-11.\n\nTrês caminhos, se quiser aliviar:\n\n1. **Nervurar mais** — aprofundar os alívios do casco e da bandeja. Dá para tirar ~1 kg sem mexer\n   na forma externa; é só mudar `PELE`, `PELE_DECK` e a profundidade dos bolsões.\n2. **Casco de chapa** — trocar o casco usinado por chapa de Al 5052 de 2 mm dobrada + moldura\n   usinada. Tira ~1 kg da tampa e derruba o torque para ~1,6 N·m (volta a caber nas 212).\n3. **Aceitar** — é um deck de mesa, não de colo. 7 kg com bateria interna e tela de 16\" é\n   coerente com o gênero.\n\nO custo de usinagem segue o mesmo nos três casos (o tempo de fresa está nos bolsões, não no peso),\nentão a escolha é de ergonomia, não de orçamento.\n"
+}

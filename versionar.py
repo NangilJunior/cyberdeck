@@ -25,6 +25,8 @@ REGRAS = {
     "app.js": [
         re.compile(r'(from "\./(?:telas|xr)\.js)(\?v=[^"]*)?(")'),
         re.compile(r'("data/(?:modelo|projeto)\.(?:json|bin))(\?v=[^"]*)?(")'),
+        # dados por projeto: `${DADOS}modelo.json?v=…` (DK-11 em data/, DK-16 em data/dk16/)
+        re.compile(r'(`\$\{DADOS\}(?:modelo|projeto)\.(?:json|bin))(\?v=[^`]*)?(`)'),
     ],
 }
 

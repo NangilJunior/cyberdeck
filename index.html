@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=202610060952">
+<link rel="stylesheet" href="style.css?v=202610071026">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
@@ -22,6 +22,10 @@
     <span class="marca-cod">DK-11</span>
     <span class="marca-nome">Cyberdeck <b>VAIO Duo 11</b></span>
   </div>
+  <nav class="projetos" aria-label="Projeto">
+    <a href="./" data-p="dk11">DK-11 · VAIO</a>
+    <a href="./?p=dk16" data-p="dk16">DK-16 · Ally</a>
+  </nav>
   <div class="topo-status" id="status">carregando modelo…</div>
   <button class="botao-icone so-celular" id="abrirPainel" aria-label="Abrir painel">☰</button>
 </header>
@@ -45,6 +49,10 @@
       <label class="controle">
         <span>Abertura da tela <output id="valAbertura">110°</output></span>
         <input type="range" id="abertura" min="0" max="150" step="1" value="110">
+      </label>
+      <label class="controle" id="ctlBerco" hidden>
+        <span>Inclinação do berço <output id="valInclinacao">0°</output></span>
+        <input type="range" id="inclinacao" min="0" max="75" step="1" value="0">
       </label>
       <label class="controle">
         <span>Vista explodida <output id="valExplodir">0%</output></span>
@@ -130,6 +138,6 @@
   </aside>
 </main>
 
-<script type="module" src="app.js?v=202610060952"></script>
+<script type="module" src="app.js?v=202610071026"></script>
 </body>
 </html>

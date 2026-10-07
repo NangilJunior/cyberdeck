@@ -1,7 +1,18 @@
-# DK-11 · Cyberdeck VAIO Duo 11 — visualizador 3D
+# Cyberdecks DK-11 e DK-16 — visualizador 3D
 
-Site estático para mostrar o projeto: modelo 3D para girar, abrir/fechar a tela, vista explodida,
+Site estático para mostrar os projetos: modelo 3D para girar, abrir/fechar a tela, vista explodida,
 raio-X, ficha de cada peça, lista de materiais, FAQ e chat opcional com o Claude.
+
+Dois projetos, um seletor no topo da página:
+
+| Projeto | Endereço | Dados | Origem |
+|---|---|---|---|
+| **DK-11** · placa do VAIO Duo 11 (o padrão) | `/` | `data/` | `CyberdeckVaioDuo11/exportar_web.py` |
+| **DK-16** · dock para ROG Ally | `/?p=dk16` | `data/dk16/` | `CyberdeckAllyDock/exportar_web.py` |
+
+O DK-16 tem uma peça articulada a mais, o **berço** do Ally (grupo `berco` no `modelo.json`, com
+eixo e ângulos próprios em `modelo.berco`). O slider "Inclinação do berço" só aparece quando o
+modelo tem berço, e com o berço deitado o Ally some (premissa do projeto: para fechar, ele sai).
 
 ## Ver no computador
 
@@ -32,11 +43,13 @@ O arquivo `.nojekyll` evita que o GitHub processe a pasta com Jekyll.
 
 ## Atualizar depois de mudar o modelo
 
-Quando o modelo do FreeCAD mudar (medidas, tela escolhida…), regenere os dados e envie de novo:
+Quando um modelo do FreeCAD mudar (medidas, tela escolhida…), regenere os dados daquele projeto e
+envie de novo. Cada exportador só escreve na pasta de dados do seu projeto:
 
 ```sh
-cd ..                     # pasta do projeto (CyberdeckVaioDuo11)
+cd ..                     # DK-11: pasta CyberdeckVaioDuo11  →  escreve web/data/
 freecadcmd exportar_web.py
+# DK-16: cd ../CyberdeckAllyDock && freecadcmd exportar_web.py  →  escreve web/data/dk16/
 cd web
 python3 versionar.py      # carimba ?v=<data-hora> nas URLs (ver "Cache" abaixo)
 git add -A && git commit -m "Atualiza modelo" && git push
@@ -61,6 +74,7 @@ Não coloque uma chave sua no código: em site público ela fica visível para q
 | `data/modelo.bin` | malhas de todas as peças (binário, ~2 MB) |
 | `data/modelo.json` | manifesto das peças: material, origem, cor, vetor da vista explodida |
 | `data/projeto.json` | specs, lista de materiais, verificação técnica, FAQ e README do projeto |
+| `data/dk16/…` | os mesmos três arquivos, do DK-16 |
 
 ## Realidade aumentada (WebXR)
 
@@ -90,5 +104,6 @@ dá para o navegador pegar o `index.html` novo junto com o `app.js` velho, e a p
 (foi o que aconteceu quando a paleta de cores subiu: a caixa aparecia vazia).
 
 `python3 versionar.py` resolve isso carimbando `?v=<data-hora>` nas referências de `style.css`,
-`app.js`, `telas.js`, `xr.js` e dos arquivos de `data/`. Como o HTML novo passa a apontar para URLs
+`app.js`, `telas.js`, `xr.js` e dos arquivos de dados (as do `app.js` são montadas como
+`` `${DADOS}modelo.json?v=…` `` e têm regra própria). Como o HTML novo passa a apontar para URLs
 novas, o navegador é obrigado a baixar tudo junto. **Rodar sempre antes do commit do site.**

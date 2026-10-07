@@ -1,14 +1,18 @@
-// DK-11 · visualizador do cyberdeck (three.js, sem build: roda direto no GitHub Pages)
+// visualizador dos cyberdecks DK-11 e DK-16 (three.js, sem build: roda direto no GitHub Pages)
+// ?p=dk16 abre o DK-16 (ROG Ally); sem parâmetro abre o DK-11 (VAIO Duo 11), como sempre foi.
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { toCreasedNormals } from "three/addons/utils/BufferGeometryUtils.js";
-import { criarTelas } from "./telas.js?v=202610060952";
-import { iniciarXR } from "./xr.js?v=202610060952";
+import { criarTelas } from "./telas.js?v=202610071026";
+import { iniciarXR } from "./xr.js?v=202610071026";
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];
-const PADRAO = { abertura: 110, explodir: 0, raiox: false, comp: true, paraf: true, arestas: true, telas: true };
+const PROJETOS = { dk11: "data/", dk16: "data/dk16/" };
+const PROJ = new URLSearchParams(location.search).get("p") === "dk16" ? "dk16" : "dk11";
+const DADOS = PROJETOS[PROJ];
+const PADRAO = { abertura: 110, inclinacao: 0, explodir: 0, raiox: false, comp: true, paraf: true, arestas: true, telas: true };
 const estado = { ...PADRAO, sel: null, ocultos: new Set(), isolado: null };
 const CARCACA = new Set(["usinado", "comprado", "acabamento"]);
 let modelo, projeto, telas, malhas = [];
@@ -58,8 +62,11 @@ mundo.add(raiz);
 const base = new THREE.Group();
 const pivoTampa = new THREE.Group();
 const tampa = new THREE.Group();
-raiz.add(base, pivoTampa);
+const pivoBerco = new THREE.Group();     // só o DK-16 tem berço (gira em +X, ao contrário da tampa)
+const berco = new THREE.Group();
+raiz.add(base, pivoTampa, pivoBerco);
 pivoTampa.add(tampa);
+pivoBerco.add(berco);
 
 function redimensionar() {
   const palco = $("#palco");
@@ -94,9 +101,9 @@ async function baixarBinario(url, aoProgredir) {
 
 async function carregar() {
   const [m, pj, buf] = await Promise.all([
-    fetch("data/modelo.json?v=202610060952").then((r) => r.json()),
-    fetch("data/projeto.json?v=202610060952").then((r) => r.json()),
-    baixarBinario("data/modelo.bin?v=202610060952", (f) => ($("#progresso").style.width = `${f * 100}%`)),
+    fetch(`${DADOS}modelo.json?v=202610071026`).then((r) => r.json()),
+    fetch(`${DADOS}projeto.json?v=202610071026`).then((r) => r.json()),
+    baixarBinario(`${DADOS}modelo.bin?v=202610071026`, (f) => ($("#progresso").style.width = `${f * 100}%`)),
   ]);
   modelo = m;
   projeto = pj;
@@ -104,6 +111,17 @@ async function carregar() {
   raiz.position.set(-W / 2, 0, D / 2);
   pivoTampa.position.set(0, modelo.eixo.y, modelo.eixo.z);
   tampa.position.set(0, -modelo.eixo.y, -modelo.eixo.z);
+  PADRAO.abertura = estado.abertura = modelo.abertura ?? PADRAO.abertura;
+  $("#abertura").max = modelo.abertura_max ?? 150;
+  if (modelo.berco) {
+    const { eixo, inclinacao, max } = modelo.berco;
+    pivoBerco.position.set(0, eixo.y, eixo.z);
+    berco.position.set(0, -eixo.y, -eixo.z);
+    PADRAO.inclinacao = estado.inclinacao = inclinacao;
+    $("#inclinacao").max = max;
+    $("#ctlBerco").hidden = false;
+  }
+  aplicarMarca();
 
   const matLinha = new THREE.LineBasicMaterial({ color: 0x050605, transparent: true, opacity: 0.55 });
   for (const p of modelo.pecas) {
@@ -129,7 +147,7 @@ async function carregar() {
       malha.add(linhas);
       malha.userData.linhas = linhas;
     }
-    (p.grupo === "tampa" ? tampa : base).add(malha);
+    ({ tampa, berco }[p.grupo] ?? base).add(malha);
     malhas.push(malha);
   }
   telas = criarTelas(modelo, malhas);
@@ -155,6 +173,14 @@ function aplicarAbertura() {
   $("#abertura").value = estado.abertura;
 }
 
+function aplicarInclinacao() {
+  if (!modelo?.berco) return;
+  pivoBerco.rotation.x = THREE.MathUtils.degToRad(estado.inclinacao);
+  $("#valInclinacao").textContent = `${Math.round(estado.inclinacao)}°`;
+  $("#inclinacao").value = estado.inclinacao;
+  aplicarVisibilidade();                    // berço deitado = Ally fora (premissa do DK-16)
+}
+
 function aplicarExplodir() {
   const t = estado.explodir / 100;
   for (const m of malhas) m.position.copy(m.userData.explodir).multiplyScalar(t);
@@ -164,6 +190,7 @@ function aplicarExplodir() {
 
 function visivel(p) {
   if (estado.isolado) return p.nome === estado.isolado;
+  if (modelo?.berco && p.nome.startsWith("Ref_Ally") && estado.inclinacao < 3) return false;
   if (estado.ocultos.has(p.nome)) return false;
   if (p.tipo === "referencia" && !estado.comp) return false;
   if (p.tipo === "fixador" && !estado.paraf) return false;
@@ -192,7 +219,18 @@ function aplicarVisibilidade() {
   $("#isolar").textContent = estado.isolado ? "Mostrar tudo" : "Isolar";
 }
 
-function aplicarTudo() { aplicarAbertura(); aplicarExplodir(); aplicarVisibilidade(); }
+function aplicarTudo() { aplicarAbertura(); aplicarInclinacao(); aplicarExplodir(); aplicarVisibilidade(); }
+
+// marca, título e textos de cada projeto (o HTML já vem com os do DK-11)
+function aplicarMarca() {
+  $$(".projetos a").forEach((a) => a.classList.toggle("ativo", a.dataset.p === PROJ));
+  if (!projeto.codigo) return;
+  $(".marca-cod").textContent = projeto.codigo;
+  $(".marca-nome").innerHTML = `Cyberdeck <b>${esc(projeto.nome)}</b>`;
+  document.title = `${projeto.codigo} · Cyberdeck ${projeto.nome}`;
+  if (projeto.nota_materiais) $("#aba-materiais .nota").textContent = projeto.nota_materiais;
+  if (projeto.dica) $("#dica").textContent = projeto.dica;
+}
 
 // ------------------------------------------------------------------ animações
 const tweens = new Map();
@@ -210,7 +248,7 @@ function animarValor(campo, alvo, ms = 1200) {
   const de = estado[campo];
   animar(campo, de, alvo, ms, (v) => {
     estado[campo] = v;
-    campo === "abertura" ? aplicarAbertura() : aplicarExplodir();
+    ({ abertura: aplicarAbertura, inclinacao: aplicarInclinacao }[campo] ?? aplicarExplodir)();
   });
 }
 
@@ -275,7 +313,7 @@ function selecionar(nome) {
 
 function mostrarFicha(p) {
   $("#ficha").hidden = false;
-  $("#fichaCat").textContent = `${p.categoria} · ${p.grupo === "tampa" ? "tampa" : "base"}`;
+  $("#fichaCat").textContent = `${p.categoria} · ${{ tampa: "tampa", berco: "berço" }[p.grupo] ?? "base"}`;
   $("#fichaNome").textContent = p.rotulo;
   const linhas = [];
   if (p.tipo === "fixador") {
@@ -475,7 +513,7 @@ function promptSistema() {
   const pecas = modelo.pecas.filter((p) => p.tipo !== "acabamento").map((p) =>
     `- ${p.rotulo} [${p.categoria}, ${p.grupo}] ${p.material}${p.obs ? " — " + p.obs : ""}; ${p.medidas.join("×")} mm${p.massa_g ? "; " + p.massa_g + " g" : ""}`);
   sistema = [
-    "Você é o assistente do site do projeto DK-11, um cyberdeck em alumínio usinado feito com a placa-mãe de um Sony VAIO Duo 11.",
+    `Você é o assistente do site do projeto ${projeto.titulo}. ${projeto.resumo}`,
     "Quem pergunta são amigos do autor vendo o modelo 3D. Responda em português do Brasil, direto e curto (até ~150 palavras, salvo se pedirem detalhe).",
     "Baseie-se só nos dados abaixo. Se algo é provisório (a medir, a definir), diga isso; não invente preços, medidas nem peças.",
     "Se a pergunta citar uma peça, explique para que ela serve e por que foi escolhida.",
@@ -605,18 +643,41 @@ function markdown(md) {
 }
 
 // ------------------------------------------------------------------ controles da interface
-$("#abertura").addEventListener("input", (e) => { tweens.delete("abertura"); estado.abertura = +e.target.value; aplicarAbertura(); });
+$("#abertura").addEventListener("input", (e) => {
+  tweens.delete("abertura");
+  estado.abertura = +e.target.value;
+  // DK-16: com o Ally em pé a tampa não passa do limite que o verificar.py calculou
+  if (modelo?.berco && estado.inclinacao >= 3) estado.abertura = Math.max(estado.abertura, modelo.berco.abertura_min);
+  aplicarAbertura();
+});
 $("#explodir").addEventListener("input", (e) => { tweens.delete("explodir"); estado.explodir = +e.target.value; aplicarExplodir(); });
+$("#inclinacao").addEventListener("input", (e) => { tweens.delete("inclinacao"); estado.inclinacao = +e.target.value; aplicarInclinacao(); });
 for (const [id, chave] of [["#tRaiox", "raiox"], ["#tComp", "comp"], ["#tParaf", "paraf"], ["#tArestas", "arestas"],
   ["#tTelas", "telas"]]) {
   $(id).addEventListener("click", () => { estado[chave] = !estado[chave]; aplicarVisibilidade(); });
 }
-$("#animar").addEventListener("click", () => animarValor("abertura", estado.abertura > 5 ? 0 : PADRAO.abertura, 1600));
+// no DK-16 a tampa bate no Ally em pé: para fechar, o berço deita primeiro; para abrir, sobe por último
+let etapaPendente = null;       // 2ª etapa agendada: cancelada se clicarem de novo no meio da animação
+function alternarTampa() {
+  const fechar = estado.abertura > 5;
+  if (!modelo?.berco) return animarValor("abertura", fechar ? 0 : PADRAO.abertura, 1600);
+  clearTimeout(etapaPendente);
+  if (fechar) {
+    animarValor("inclinacao", 0, 900);
+    etapaPendente = setTimeout(() => animarValor("abertura", 0, 1600), 950);
+  } else {
+    animarValor("abertura", PADRAO.abertura, 1600);
+    etapaPendente = setTimeout(() => animarValor("inclinacao", PADRAO.inclinacao, 900), 1300);
+  }
+}
+$("#animar").addEventListener("click", alternarTampa);
 $("#animarExplodir").addEventListener("click", () => {
   animarValor("explodir", estado.explodir > 50 ? 0 : 100, 1400);
   setTimeout(() => irPara(vistaAtual), 1450);   // reenquadra: explodida ocupa bem mais espaço
 });
 $("#resetar").addEventListener("click", () => {
+  clearTimeout(etapaPendente);
+  tweens.clear();
   Object.assign(estado, PADRAO, { isolado: null });
   estado.ocultos.clear();
   selecionar(null);
@@ -657,7 +718,7 @@ const SOMBRA_DESKTOP = { left: -450, right: 450, top: 450, bottom: -450, near: 1
 const xr = iniciarXR({
   renderer, cena, camera, mundo, malhas,
   telas: () => telas,
-  alternarTampa: () => animarValor("abertura", estado.abertura > 5 ? 0 : PADRAO.abertura, 1600),
+  alternarTampa,
   aoEntrar(modo) {
     chao.visible = grade.visible = false;
     if (modo === "immersive-vr") cena.background = new THREE.Color(0x0d100b);

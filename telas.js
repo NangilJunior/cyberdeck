@@ -135,7 +135,7 @@ function fundo(g, w, h, passo) {
 const serieRede = Array.from({ length: 90 }, () => 0.3), serieRede2 = Array.from({ length: 90 }, () => 0.2);
 let proximoEvento = 0;
 
-function desenharPrincipal(g, W, H, t) {
+function desenharPrincipal(g, W, H, t, rotulo = "11.4 · SVD11 · NÓ TANGO-11") {
   const T = tema();
   fundo(g, W, H, 40);
   const d = new Date();
@@ -145,7 +145,7 @@ function desenharPrincipal(g, W, H, t) {
   g.fillStyle = T.pri; g.fillRect(0, 54, W, 2);
   g.font = `700 28px ${COND}`; g.textBaseline = "middle"; g.fillStyle = "#e9fffa";
   g.fillText("DK//OS", 28, 28);
-  g.fillStyle = T.pri; g.font = `500 16px ${MONO}`; g.fillText("11.4 · SVD11 · NÓ TANGO-11", 130, 29);
+  g.fillStyle = T.pri; g.font = `500 16px ${MONO}`; g.fillText(rotulo, 130, 29);
   ["NAV", "SIS", "COMMS", "OPS", "ARQ"].forEach((aba, i) => {
     const x = 560 + i * 110, ativo = i === 1;
     g.fillStyle = ativo ? T.pri : rgba(T.pri, 0.5);
@@ -506,11 +506,12 @@ export function criarTelas(modelo, malhas) {
     const pai = porNome(tl.peca);
     if (!pai) continue;
     const principal = tl.tipo === "principal";
-    const cv = principal ? nova(1600, 900) : nova(1920, 480);
+    const cv = principal ? nova(1600, Math.round(1600 * tl.h / tl.w)) : nova(1920, 480);   // 16:9 ou 16:10
     const m = plano(tl.w, tl.h, cv, tl.normal);
     m.position.set(...tl.centro);
     pai.add(m);
-    const item = { m, cv, g: cv.getContext("2d"), desenhar: principal ? desenharPrincipal : desenharBarra, tipo: tl.tipo };
+    const desenhar = principal ? (g, W, H, t) => desenharPrincipal(g, W, H, t, tl.rotulo) : desenharBarra;
+    const item = { m, cv, g: cv.getContext("2d"), desenhar, tipo: tl.tipo };
     itens.push(item);
     if (!principal) barra = item;
   }
