@@ -4,8 +4,8 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { toCreasedNormals } from "three/addons/utils/BufferGeometryUtils.js";
-import { criarTelas } from "./telas.js?v=202610071044";
-import { iniciarXR } from "./xr.js?v=202610071044";
+import { criarTelas } from "./telas.js?v=202610071112";
+import { iniciarXR } from "./xr.js?v=202610071112";
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];
@@ -101,9 +101,9 @@ async function baixarBinario(url, aoProgredir) {
 
 async function carregar() {
   const [m, pj, buf] = await Promise.all([
-    fetch(`${DADOS}modelo.json?v=202610071044`).then((r) => r.json()),
-    fetch(`${DADOS}projeto.json?v=202610071044`).then((r) => r.json()),
-    baixarBinario(`${DADOS}modelo.bin?v=202610071044`, (f) => ($("#progresso").style.width = `${f * 100}%`)),
+    fetch(`${DADOS}modelo.json?v=202610071112`).then((r) => r.json()),
+    fetch(`${DADOS}projeto.json?v=202610071112`).then((r) => r.json()),
+    baixarBinario(`${DADOS}modelo.bin?v=202610071112`, (f) => ($("#progresso").style.width = `${f * 100}%`)),
   ]);
   modelo = m;
   projeto = pj;
